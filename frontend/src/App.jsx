@@ -1,8 +1,14 @@
-export const App = () => {
+// App.jsx
 
+import { BrowserRouter, Routes } from "react-router-dom";
+import { routes } from "./routes/routes";
+
+export const App = () => {
   return (
-    <>
-      <h1>Welcome to Final Project!</h1>
-    </>
+    <main>
+      <BrowserRouter>
+        <Routes>{routes}</Routes>
+      </BrowserRouter>
+    </main>
   );
 };
