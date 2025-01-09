@@ -36,3 +36,9 @@ a:hover {
 .active {
   color: #ff7bbc;
 }
+
+@media (min-width: 1024px) {
+  .hamburger-menu {
+    display: none;
+  }
+}

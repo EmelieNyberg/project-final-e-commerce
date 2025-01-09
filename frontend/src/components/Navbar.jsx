@@ -22,7 +22,9 @@ export const Navbar = () => {
         <li><NavLink to="/login" activeClassName="active"><BsFillPersonFill /></NavLink></li>
         <li><NavLink to="/shoppingcart" activeClassName="active"><PiShoppingCartSimpleBold /></NavLink></li>
       </ul>
-      <HamburgerMenu />
+      <div className="hamburger-menu">
+        <HamburgerMenu />
+      </div>
     </nav>
   );
 };
