@@ -1,4 +1,4 @@
-nav {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +10,8 @@ nav {
   font-weight: 700;
 }
 
-ul {
+.costumer-links,
+.nav-links {
   list-style-type: none;
   display: flex;
   gap: 15px;
