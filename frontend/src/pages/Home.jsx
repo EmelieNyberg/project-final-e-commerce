@@ -1,7 +1,9 @@
 // Home.jsx
 
+import { Hero } from "../components/Hero";
+
 export const Home = () => {
     return (
-        <h1>Home</h1>
+        <Hero />
     );
 };
