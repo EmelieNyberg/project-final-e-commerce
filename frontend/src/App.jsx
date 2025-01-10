@@ -2,6 +2,7 @@
 
 import { BrowserRouter, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
+import { Banner } from "./components/Banner";
 import { routes } from "./routes/routes";
 
 import { Footer } from "./components/Footer";
@@ -10,7 +11,7 @@ export const App = () => {
   return (
     <>
       <BrowserRouter>
-        {/* Navbar Emelie Lagt till 8 jan */}
+        <Banner />
         <Navbar />
         <Routes>{routes}</Routes>
       </BrowserRouter>

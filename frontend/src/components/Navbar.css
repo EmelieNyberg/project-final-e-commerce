@@ -1,4 +1,4 @@
-nav {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,10 +7,13 @@ nav {
 }
 
 .brand {
-  font-weight: 700;
+  /* font-weight: 700; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
 
-ul {
+.costumer-links,
+.nav-links {
   list-style-type: none;
   display: flex;
   gap: 15px;
@@ -34,4 +37,10 @@ a:hover {
 
 .active {
   color: #ff7bbc;
+}
+
+@media (min-width: 1024px) {
+  .hamburger-menu {
+    display: none;
+  }
 }
