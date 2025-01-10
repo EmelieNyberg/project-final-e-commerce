@@ -1,5 +1,12 @@
-/* Add menu on top of site */
+.bm-burger-button {
+    position: relative;
+}
 
+.bm-burger-button button {
+    position: absolute;
+}
+
+/* Add menu on top of site */
 .bm-menu-wrap {
     top: 0;
 }
@@ -32,10 +39,6 @@
         display: none;
     }
 } */
-
-.bm-burger-button {
-    position: absolute;
-}
 
 /* .bm-menu {
     background: #ffffff;

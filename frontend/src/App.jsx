@@ -9,9 +9,7 @@ export const App = () => {
   return (
     <>
       <BrowserRouter>
-        {/* Banner tillagt 9 jan */}
         <Banner />
-        {/* Navbar Emelie Lagt till 8 jan */}
         <Navbar />
         <Routes>{routes}</Routes>
       </BrowserRouter>

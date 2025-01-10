@@ -32,7 +32,7 @@ const StyledButton = styled.button`
 export const Button = ({ text }) => {
     return (
         <StyledButton>
-            Shop now <IoArrowForward />
+            {text} <IoArrowForward />
         </StyledButton>
     );
 };
