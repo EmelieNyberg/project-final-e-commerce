@@ -4,6 +4,8 @@ import { BrowserRouter, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { routes } from "./routes/routes";
 
+import { Footer } from "./components/Footer";
+
 export const App = () => {
   return (
     <>
@@ -12,6 +14,7 @@ export const App = () => {
         <Navbar />
         <Routes>{routes}</Routes>
       </BrowserRouter>
+      <Footer />
     </>
   );
 };
