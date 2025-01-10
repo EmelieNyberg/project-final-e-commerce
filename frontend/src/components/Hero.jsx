@@ -74,7 +74,7 @@ export const Hero = () => {
             Explore our collection of toys, clothing, and more. Carefully selected to keep your child entertained, safe, and happy.
           </HeroParagraph>
 
-          <Button text="Shop Now" />
+          <Button text="Shop now" />
         </TextContainer>
 
         <ImageContainer>
