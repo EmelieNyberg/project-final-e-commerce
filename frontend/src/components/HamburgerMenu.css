@@ -1,5 +1,6 @@
 .bm-burger-button {
     position: relative;
+    width: 20px;
 }
 
 .bm-burger-button button {
@@ -15,6 +16,26 @@
     background: white;
     padding-top: 50px;
 }
+
+li {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    font-family: "Poppins", serif;
+    color: black;
+}
+
+a:hover {
+    color: #ff7bbc;
+}
+
+.active {
+    color: #ff7bbc;
+}
+
+
 
 /* .bm-cross-button {
     height: 29px;

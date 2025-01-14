@@ -1,9 +1,10 @@
+/* Navbar.css */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f8f9fa;
 }
 
 .brand {
@@ -12,13 +13,18 @@
   font-size: 20px;
 }
 
-.costumer-links,
+.icon-links,
 .nav-links {
   list-style-type: none;
   display: flex;
+  align-items: center;
   gap: 15px;
   margin: 0;
   padding: 0;
+}
+
+.nav-links {
+  gap: 35px;
 }
 
 li {
@@ -41,6 +47,12 @@ a:hover {
 
 @media (min-width: 1024px) {
   .hamburger-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
     display: none;
   }
 }

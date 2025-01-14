@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { NavLink } from "react-router-dom";
-import { LuMenu } from "react-icons/lu"; // Import LuMenu
-import { RxCross2 } from "react-icons/rx"; // Import RxCross2
-
+import { AiOutlineMenu } from "react-icons/ai"; // Import hamburger icon
+import { RxCross2 } from "react-icons/rx"; // Import cross icon
 import "./HamburgerMenu.css";
 
 export const HamburgerMenu = () => {
@@ -25,7 +24,7 @@ export const HamburgerMenu = () => {
         onStateChange={(state) => handleStateChange(state)}
         customBurgerIcon={
           !isOpen ? (
-            <LuMenu className="hamburger-icon" />
+            <AiOutlineMenu className="hamburger-icon" />
           ) : null
         }
         customCrossIcon={
