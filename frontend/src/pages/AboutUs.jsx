@@ -1,7 +1,9 @@
 // AboutUs.jsx
 
+import { Header } from "../components/Header";
+
 export const AboutUs = () => {
-    return (
-        <h1>About us</h1>
-    );
+  return (
+    <Header title="About us" subtitle="About us" />
+  );
 };

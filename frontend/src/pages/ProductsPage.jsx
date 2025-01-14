@@ -1,7 +1,9 @@
 // ProductsPage.jsx
 
+import { Header } from "../components/Header";
+
 export const ProductsPage = () => {
     return (
-        <h1>Products Page</h1>
+        <Header title="Products" subtitle="Products" />
     );
 };

@@ -1,7 +1,9 @@
 // Contact.jsx
 
+import { Header } from "../components/Header";
+
 export const Contact = () => {
-    return (
-        <h1>Contact page</h1>
-    );
+  return (
+    <Header title="Contact" subtitle="Contact" />
+  );
 };
