@@ -7,6 +7,14 @@
     position: absolute;
 }
 
+.bm-burger-button:hover {
+    color: #ff7bbc;
+}
+
+.bm-cross-button:hover {
+    color: #ff7bbc;
+}
+
 /* Add menu on top of site */
 .bm-menu-wrap {
     top: 0;
@@ -34,7 +42,6 @@ a:hover {
 .active {
     color: #ff7bbc;
 }
-
 
 
 /* .bm-cross-button {

@@ -30,8 +30,6 @@ import { HamburgerMenu } from "./HamburgerMenu";
 //   );
 // };
 
-
-// Styled Components för Navbar
 const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -39,11 +37,10 @@ const NavbarWrapper = styled.nav`
   padding: 10px 20px;
 `;
 
-// Styled component för varumärket
 const Brand = styled(Link)`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-  text-decoration: none; /* Lägger till textdekoration för att ta bort understrykning */
+  text-decoration: none;
   color: black;
 
   &:hover {
@@ -51,7 +48,6 @@ const Brand = styled(Link)`
   }
 `;
 
-// Styled component för listor
 const List = styled.ul`
   list-style-type: none;
   display: flex;
@@ -65,12 +61,10 @@ const List = styled.ul`
   }
 `;
 
-// Styled component för listobjekt (li)
 const ListItem = styled.li`
   display: inline;
 `;
 
-// Styled component för länkar
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   font-family: "Poppins", serif;
@@ -85,14 +79,12 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-// För ikonlänkar
 const IconLinksWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
 `;
 
-// För hamburger-menyn
 const HamburgerMenuWrapper = styled.div`
   @media (min-width: 1024px) {
     display: none;
