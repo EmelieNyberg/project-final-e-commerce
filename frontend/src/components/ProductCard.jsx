@@ -3,18 +3,27 @@ import { Link } from "react-router-dom";
 
 const ProductCardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr); /* Fyra kolumner på rad */
+
   max-width: 1200px;
   margin: auto;
   padding: 2% 0;
 
-
-   /* Media query för mobilvy */
-   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr); /* Visa 2 produkter i varje rad */
+  /* För surfplattor */
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr); /* Tre på rad för mindre skärmar */
   }
-  
+
+  /* För mobiler */
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr); /* Två på rad för mobilvyer */
+  }
+
+  /* För riktigt små mobiler */
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr); /* En på rad för små mobiler */
+  }
+
 `;
 
 const CardTextWrapper = styled.div`
