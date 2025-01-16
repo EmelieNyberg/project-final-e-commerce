@@ -69,11 +69,6 @@ app.get("/", (req, res) => {
   res.send("Hello Technigo!");
 });
 
-// app.get("/products", async (req, res) => {
-//   const products = await Product.find().sort({ id: 'desc' }).limit(4).exec();
-//   res.json(products);
-// });
-
 // Get all products, e.g., http://localhost:8080/products
 // or get a caregory of products, e.g., http://localhost:8080/products?category=dresses 
 app.get("/products", async (req, res) => {
@@ -87,6 +82,11 @@ app.get("/products", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch products" });
   }
+});
+
+app.get("/products/latest-products", async (req, res) => {
+  const products = await Product.find().sort({ id: 'desc' }).limit(4).exec();
+  res.json(products);
 });
 
 // Endpoint that returns one single product

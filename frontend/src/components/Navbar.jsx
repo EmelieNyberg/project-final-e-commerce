@@ -2,11 +2,10 @@
 
 import { Link, NavLink } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
-import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import styled from "styled-components";
-// import './Navbar.css';
 
 import { HamburgerMenu } from "./HamburgerMenu";
+import { ShoppingCartLink } from "./ShoppingCartLink";
 
 // export const Navbar = () => {
 //   return (
@@ -117,13 +116,11 @@ export const Navbar = () => {
       <IconLinksWrapper>
         <ListItem>
           <StyledNavLink to="/login" activeClassName="active">
-            <BsFillPersonFill style={{ fontSize: "20px" }} />
+            <BsFillPersonFill style={{ fontSize: "25px" }} />
           </StyledNavLink>
         </ListItem>
         <ListItem>
-          <StyledNavLink to="/shoppingcart" activeClassName="active">
-            <PiShoppingCartSimpleBold style={{ fontSize: "20px" }} />
-          </StyledNavLink>
+          <ShoppingCartLink />
         </ListItem>
         <HamburgerMenuWrapper>
           <HamburgerMenu />

@@ -1,7 +1,9 @@
 // Login.jsx
 
+import { Header } from "../components/Header";
+
 export const Login = () => {
     return (
-        <h1>Login page</h1>
+        <Header title="Login" subtitle="Login" />
     );
 };
