@@ -9,6 +9,7 @@ import styled from "styled-components";
 const ShoppingCartContainer = styled.div`
   max-width: 600px;
   margin: auto;
+  padding: 30px 0;
   font-family: "Poppins", serif;
 `;
 
@@ -51,6 +52,15 @@ const QuantityWrapper = styled.div`
 const QuantityButton = styled.button`
   background: none;
   border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #ff7bbc;
+  }
+`;
+
+const QuantityNumber = styled.p`
+  margin: 0 5px;
 `;
 
 const ActionWrapper = styled.div`
@@ -67,10 +77,37 @@ const CrossButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: #ff7bbc;; /* Valfri: Ändra färg vid hover */
+    color: #ff7bbc;
   }
 `;
 
+const TotalPrice = styled.h4`
+  margin: 0;
+`;
+
+const SummaryCart = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+`;
+
+const CheckoutButton = styled.button`
+  background-color: lightgray; // Lila bakgrund
+  padding: 12px 24px;         // Padding för att göra knappen större
+  border: none;               // Ingen kant
+  border-radius: 30px;        // Rundade hörn
+  font-size: 16px;            // Textstorlek
+  font-weight: bold;          // Fetstil             
+  cursor: pointer;           // Markera knappen som klickbar
+  transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
+  width: 100%;
+
+  // Lägg till hover-effekt
+  &:hover {
+    background-color: #ff7bbc; // En något mörkare lila vid hover
+    color: white;
+  }
+`;
 
 export const ShoppingCart = () => {
   return (
@@ -82,21 +119,31 @@ export const ShoppingCart = () => {
           <h3>TOTAL</h3>
         </Heading>
         <CartWrapper>
-          <ProductImg src="https://static.kappahl.com/cdn-cgi/image/quality=80,width=1696,format=auto/globalassets/productimages/408450_l.jpg?ref=C24E2850B4" alt="Description of the image" />
+          <a href="/product/floral-dress">
+            <ProductImg
+              src="https://static.kappahl.com/cdn-cgi/image/quality=80,width=1696,format=auto/globalassets/productimages/408450_l.jpg?ref=C24E2850B4"
+              alt="Description of the image"
+            />
+          </a>
           <ProductDetails>
-            <StyledTitle>Floral dress</StyledTitle>
+            <StyledTitle><a href="/product/floral-dress">Floral dress</a></StyledTitle>
             <p>Price: $45.00</p>
             <p>Size: 92</p>
             <QuantityWrapper>
-              <QuantityButton><FaMinus /></QuantityButton><p>1</p><QuantityButton><FaPlus />
+              <QuantityButton><FaMinus /></QuantityButton><QuantityNumber>1</QuantityNumber><QuantityButton><FaPlus />
               </QuantityButton>
             </QuantityWrapper>
           </ProductDetails>
           <ActionWrapper>
             <CrossButton><RxCross2 style={{ fontSize: "25px" }} /></CrossButton>
-            <h4>$45.00</h4>
+            <TotalPrice>$45.00</TotalPrice>
           </ActionWrapper>
         </CartWrapper>
+        <SummaryCart>
+          <h3>TOTAL PRICE</h3>
+          <h3>$45.00</h3>
+        </SummaryCart>
+        <CheckoutButton>CHECKOUT</CheckoutButton>
       </ShoppingCartContainer>
     </>
   );
