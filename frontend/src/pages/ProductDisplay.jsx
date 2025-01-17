@@ -30,7 +30,7 @@ const BackButton = styled(Link)`
 
 const ImageWrapper = styled.div`
   flex: 1;
-  margin-top: 50px; /* Skapa extra utrymme under tillbaka-knappen */
+  margin-top: 50px;
   img {
     max-width: 100%;
     object-fit: cover;
@@ -68,6 +68,34 @@ const SizeButton = styled.button`
   }
 `;
 
+const CartWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff7bbc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #c79ced;
+    }
+  }
+
+  span {
+    font-size: 18px;
+    font-weight: bold;
+    width: 30px;
+    text-align: center;
+  }
+`;
+
 const Divider = styled.hr`
   margin: 20px 0;
   border: 1px solid #ddd;
@@ -102,92 +130,97 @@ const DropdownWrapper = styled.div`
 `;
 
 export const ProductDisplay = () => {
-    const { id } = useParams(); // Hämta produkt-ID från URL
-    const [product, setProduct] = useState(null);
-    const [selectedSize, setSelectedSize] = useState(null); // State för vald storlek
-    const [isMaterialOpen, setIsMaterialOpen] = useState(false); // State för material
-    const [isWashOpen, setIsWashOpen] = useState(false); // State för tvättråd
-    const [isMoreInfoOpen, setIsMoreInfoOpen] = useState(false); // State för "Mer info"
+  const { id } = useParams(); // Hämta produkt-ID från URL
+  const [product, setProduct] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null); // State för vald storlek
+  const [quantity, setQuantity] = useState(1); // State för antal
+  const [isMaterialOpen, setIsMaterialOpen] = useState(false); // State för material
+  const [isWashOpen, setIsWashOpen] = useState(false); // State för tvättråd
+  const [isMoreInfoOpen, setIsMoreInfoOpen] = useState(false); // State för "Mer info"
 
-    useEffect(() => {
-        fetch(`http://localhost:8080/products/${id}`)
-            .then((response) => response.json())
-            .then((data) => setProduct(data))
-            .catch((error) => console.error("Fel vid hämtning av produkt:", error));
-    }, [id]);
+  useEffect(() => {
+    fetch(`http://localhost:8080/products/${id}`)
+      .then((response) => response.json())
+      .then((data) => setProduct(data))
+      .catch((error) => console.error("Fel vid hämtning av produkt:", error));
+  }, [id]);
 
-    if (!product) return <p>Loading...</p>;
+  const increaseQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
 
-    return (
-        <ProductDetailsWrapper>
-            {/* Tillbaka-knapp */}
-            <BackButton to="/products">← Tillbaka</BackButton>
+  const decreaseQuantity = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  };
 
-            <ImageWrapper>
-                <img src={product.image.url} alt={`Image of ${product.title}`} />
-            </ImageWrapper>
-            <InfoWrapper>
-                <h1>{product.title}</h1>
-                <p><strong>Brand:</strong> {product.brand}</p>
-                <p><strong>Price:</strong> {product.price}</p>
+  if (!product) return <p>Loading...</p>;
 
-                {/* Size-knappar */}
-                <p><strong>Sizes:</strong></p>
-                <SizeButtonWrapper>
-                    {product.size.map((size) => (
-                        <SizeButton
-                            key={size}
-                            selected={selectedSize === size}
-                            onClick={() =>
-                                setSelectedSize(selectedSize === size ? null : size) // Avmarkera om samma storlek klickas
-                            }
-                        >
-                            {size}
-                        </SizeButton>
-                    ))}
-                </SizeButtonWrapper>
+  return (
+    <ProductDetailsWrapper>
+      {/* Tillbaka-knapp */}
+      <BackButton to="/products">← Tillbaka</BackButton>
 
-                <button>Add to Cart</button>
+      <ImageWrapper>
+        <img src={product.image.url} alt={`Image of ${product.title}`} />
+      </ImageWrapper>
+      <InfoWrapper>
+        <h1>{product.title}</h1>
+        <p><strong>Brand:</strong> {product.brand}</p>
+        <p><strong>Price:</strong> {product.price}</p>
 
-                <p><strong>Description:</strong> {product.description}</p>
+        {/* Size-knappar */}
+        <p><strong>Sizes:</strong></p>
+        <SizeButtonWrapper>
+          {product.size.map((size) => (
+            <SizeButton
+              key={size}
+              selected={selectedSize === size}
+              onClick={() => setSelectedSize(size)}
+            >
+              {size}
+            </SizeButton>
+          ))}
+        </SizeButtonWrapper>
 
-                {/* Divider och "Mer info" */}
-                <Divider />
+        {/* Antalsjustering och Lägg till i varukorg-knapp */}
+        <CartWrapper>
+          <button onClick={decreaseQuantity}>-</button>
+          <span>{quantity}</span>
+          <button onClick={increaseQuantity}>+</button>
+          <button>ADD TO CART</button>
+        </CartWrapper>
 
-                {/* Dropdown för Mer info */}
-                <DropdownWrapper>
-                    <button onClick={() => setIsMoreInfoOpen(!isMoreInfoOpen)}>
-                        {isMoreInfoOpen ? "-" : "+"} Mer info
-                    </button>
-                    {isMoreInfoOpen && (
-                        <div className="content">
-                            {/* Dropdown för Material */}
-                            <DropdownWrapper>
-                                <button onClick={() => setIsMaterialOpen(!isMaterialOpen)}>
-                                    {isMaterialOpen ? "-" : "+"} Material
-                                </button>
-                                {isMaterialOpen && (
-                                    <div className="content">
-                                        <p>{product.material}</p>
-                                    </div>
-                                )}
-                            </DropdownWrapper>
+        {/* Beskrivning */}
+        <p><strong>Description:</strong> {product.description}</p>
 
-                            {/* Dropdown för Wash */}
-                            <DropdownWrapper>
-                                <button onClick={() => setIsWashOpen(!isWashOpen)}>
-                                    {isWashOpen ? "-" : "+"} Wash
-                                </button>
-                                {isWashOpen && (
-                                    <div className="content">
-                                        <p>{product.wash}</p>
-                                    </div>
-                                )}
-                            </DropdownWrapper>
-                        </div>
-                    )}
-                </DropdownWrapper>
-            </InfoWrapper>
-        </ProductDetailsWrapper>
-    );
+        <Divider />
+
+        {/* Dropdown för Mer info */}
+        <DropdownWrapper>
+          <button onClick={() => setIsMoreInfoOpen(!isMoreInfoOpen)}>
+            {isMoreInfoOpen ? "-" : "+"} Mer info
+          </button>
+          {isMoreInfoOpen && (
+            <div className="content">
+              {/* Dropdown för Material */}
+              <DropdownWrapper>
+                <button onClick={() => setIsMaterialOpen(!isMaterialOpen)}>
+                  {isMaterialOpen ? "-" : "+"} Material
+                </button>
+                {isMaterialOpen && <p>{product.material}</p>}
+              </DropdownWrapper>
+
+              {/* Dropdown för Wash */}
+              <DropdownWrapper>
+                <button onClick={() => setIsWashOpen(!isWashOpen)}>
+                  {isWashOpen ? "-" : "+"} Wash
+                </button>
+                {isWashOpen && <p>{product.wash}</p>}
+              </DropdownWrapper>
+            </div>
+          )}
+        </DropdownWrapper>
+      </InfoWrapper>
+    </ProductDetailsWrapper>
+  );
 };
