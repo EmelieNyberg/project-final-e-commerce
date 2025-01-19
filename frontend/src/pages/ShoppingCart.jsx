@@ -1,10 +1,11 @@
-// ShoppingCart.jsx
-
+import React, { useState } from "react";
 import { Header } from "../components/Header";
-import { RxCross2 } from "react-icons/rx"; // Import cross icon
+import { RxCross2 } from "react-icons/rx";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
+import { useCartStore } from "../stores/CartStore";
 import styled from "styled-components";
+import { DeliveryAndPaymentModal } from "../components/DeliveryAndPaymentModal";
 
 const ShoppingCartContainer = styled.div`
   max-width: 600px;
@@ -22,13 +23,8 @@ const CartWrapper = styled.div`
     margin: 0;
     margin-left: auto;
     text-align: right;
-    flex-shrink: 0; /* Prevent shrinking */
+    flex-shrink: 0;
   }
-`;
-
-const Heading = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 const ProductImg = styled.img`
@@ -47,11 +43,14 @@ const StyledTitle = styled.h4`
 
 const QuantityWrapper = styled.div`
   display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 const QuantityButton = styled.button`
   background: none;
   border: none;
+  font-size: 16px;
   cursor: pointer;
 
   &:hover {
@@ -60,20 +59,23 @@ const QuantityButton = styled.button`
 `;
 
 const QuantityNumber = styled.p`
-  margin: 0 5px;
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
 `;
 
 const ActionWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Skapa maximalt avstånd mellan barn */
+  justify-content: space-between;
   align-items: flex-end;
 `;
 
 const CrossButton = styled.button`
   background: none;
   border: none;
-  padding: 0;
+  font-size: 20px;
+  color: red;
   cursor: pointer;
 
   &:hover {
@@ -92,58 +94,86 @@ const SummaryCart = styled.div`
 `;
 
 const CheckoutButton = styled.button`
-  background-color: lightgray; // Lila bakgrund
-  padding: 12px 24px;         // Padding för att göra knappen större
-  border: none;               // Ingen kant
-  border-radius: 30px;        // Rundade hörn
-  font-size: 16px;            // Textstorlek
-  font-weight: bold;          // Fetstil             
-  cursor: pointer;           // Markera knappen som klickbar
-  transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
+  background-color: lightgray;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   width: 100%;
 
-  // Lägg till hover-effekt
   &:hover {
-    background-color: #ff7bbc; // En något mörkare lila vid hover
+    background-color: #ff7bbc;
     color: white;
   }
 `;
 
 export const ShoppingCart = () => {
+  const { cartItems, updateQuantity } = useCartStore();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleToggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   return (
     <>
-      <Header title="Shopping cart" subtitle="Shopping cart" />
+      <Header title="Shopping Cart" subtitle="Manage your items" />
       <ShoppingCartContainer>
-        <Heading>
-          <h3>PRODUCT</h3>
-          <h3>TOTAL</h3>
-        </Heading>
-        <CartWrapper>
-          <a href="/product/floral-dress">
-            <ProductImg
-              src="https://static.kappahl.com/cdn-cgi/image/quality=80,width=1696,format=auto/globalassets/productimages/408450_l.jpg?ref=C24E2850B4"
-              alt="Description of the image"
-            />
-          </a>
-          <ProductDetails>
-            <StyledTitle><a href="/product/floral-dress">Floral dress</a></StyledTitle>
-            <p>Price: $45.00</p>
-            <p>Size: 92</p>
-            <QuantityWrapper>
-              <QuantityButton><FaMinus /></QuantityButton><QuantityNumber>1</QuantityNumber><QuantityButton><FaPlus />
-              </QuantityButton>
-            </QuantityWrapper>
-          </ProductDetails>
-          <ActionWrapper>
-            <CrossButton><RxCross2 style={{ fontSize: "25px" }} /></CrossButton>
-            <TotalPrice>$45.00</TotalPrice>
-          </ActionWrapper>
-        </CartWrapper>
+        {cartItems.map((item) => (
+          <CartWrapper key={`${item.id}-${item.size}`}>
+            <a href={`/products/${item.id}`}>
+              <ProductImg src={item.image?.url} alt={item.title} />
+            </a>
+            <ProductDetails>
+              <StyledTitle>
+                <a href={`/products/${item.id}`}>{item.title}</a>
+              </StyledTitle>
+              <p>Price: ${item.price}</p>
+              <p>Size: {item.size}</p>
+              <QuantityWrapper>
+                <QuantityButton
+                  onClick={() =>
+                    updateQuantity(item.id, item.size, item.quantity - 1)
+                  }
+                >
+                  <FaMinus />
+                </QuantityButton>
+                <QuantityNumber>{item.quantity}</QuantityNumber>
+                <QuantityButton
+                  onClick={() =>
+                    updateQuantity(item.id, item.size, item.quantity + 1)
+                  }
+                >
+                  <FaPlus />
+                </QuantityButton>
+              </QuantityWrapper>
+            </ProductDetails>
+            <ActionWrapper>
+              <CrossButton
+                onClick={() => updateQuantity(item.id, item.size, 0)}
+              >
+                <RxCross2 />
+              </CrossButton>
+              <TotalPrice>
+                ${(item.price * item.quantity).toFixed(2)}
+              </TotalPrice>
+            </ActionWrapper>
+          </CartWrapper>
+        ))}
         <SummaryCart>
-          <h3>TOTAL PRICE</h3>
-          <h3>$45.00</h3>
+          <h3>Total:</h3>
+          <h3>${totalPrice.toFixed(2)}</h3>
         </SummaryCart>
-        <CheckoutButton>CHECKOUT</CheckoutButton>
+        <CheckoutButton onClick={handleToggleModal}>Proceed to Checkout</CheckoutButton>
+        {isModalOpen && <DeliveryAndPaymentModal onClose={handleToggleModal} />}
       </ShoppingCartContainer>
     </>
   );
