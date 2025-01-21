@@ -1,44 +1,24 @@
-// Navbar.jsx
-
-import { Link, NavLink } from "react-router-dom";
-import { BsFillPersonFill } from "react-icons/bs";
-import styled from "styled-components";
-
-import { HamburgerMenu } from "./HamburgerMenu";
 import { ShoppingCartLink } from "./ShoppingCartLink";
+import { BsFillPersonFill } from "react-icons/bs";
+import { FaBars } from "react-icons/fa";
+import { MdClose } from "react-icons/md";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
-// export const Navbar = () => {
-//   return (
-//     <nav className="navbar">
-//       <Link to="/" className="brand">
-//         <h1>JollyKid</h1>
-//       </Link>
-//       <ul className="nav-links">
-//         <li><NavLink to="/products" activeClassName="active">Products</NavLink></li>
-//         <li><NavLink to="/about" activeClassName="active">About us</NavLink></li>
-//         <li><NavLink to="/contact" activeClassName="active">Contact</NavLink></li>
-//       </ul>
-//       <ul className="icon-links">
-//         <li><NavLink to="/login" activeClassName="active"><BsFillPersonFill /></NavLink></li>
-//         <li><NavLink to="/shoppingcart" activeClassName="active"><PiShoppingCartSimpleBold /></NavLink></li>
-//         <div className="hamburger-menu">
-//           <HamburgerMenu />
-//         </div>
-//       </ul>
-//     </nav>
-//   );
-// };
-
+// Styling
 const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  background-color: #f8f8f8;
+  font-family: "Poppins", serif;
 `;
 
-const Brand = styled(Link)`
+const Brand = styled(NavLink)`
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   text-decoration: none;
   color: black;
 
@@ -51,12 +31,23 @@ const List = styled.ul`
   list-style-type: none;
   display: flex;
   align-items: center;
-  gap: ${(props) => (props.navLinks ? "35px" : "15px")};
+  gap: 35px;
   margin: 0;
   padding: 0;
 
-  @media (max-width: 1024px) {
-    display: ${(props) => (props.navLinks ? "none" : "flex")};
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: ${(props) => (props.isOpen ? "flex" : "none")};
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Flyttar länkarna ner */
   }
 `;
 
@@ -78,54 +69,76 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const IconLinksWrapper = styled.div`
+const RightIconsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
-`;
 
-const HamburgerMenuWrapper = styled.div`
-  @media (min-width: 1024px) {
-    display: none;
+  @media (max-width: 768px) {
+    position: relative;
+    justify-content: flex-end;
   }
 `;
 
+const HamburgerMenuWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+`;
+
+const HamburgerIcon = styled(FaBars)`
+  font-size: 24px;
+  color: black;
+`;
+
+const CloseIcon = styled(MdClose)`
+  font-size: 24px;
+  color: black;
+`;
+
+// Navbar Component
 export const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
     <NavbarWrapper>
-      <Brand to="/">
-        <h1>JollyKid</h1>
-      </Brand>
-      <List navLinks>
+      <Brand to="/">JollyKid</Brand>
+
+      <List isOpen={isMenuOpen}>
         <ListItem>
-          <StyledNavLink to="/products" activeClassName="active">
+          <StyledNavLink to="/products" onClick={() => setIsMenuOpen(false)}>
             Products
           </StyledNavLink>
         </ListItem>
         <ListItem>
-          <StyledNavLink to="/about" activeClassName="active">
+          <StyledNavLink to="/about" onClick={() => setIsMenuOpen(false)}>
             About us
           </StyledNavLink>
         </ListItem>
         <ListItem>
-          <StyledNavLink to="/contact" activeClassName="active">
+          <StyledNavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
             Contact
           </StyledNavLink>
         </ListItem>
       </List>
-      <IconLinksWrapper>
-        <ListItem>
-          <StyledNavLink to="/login" activeClassName="active">
-            <BsFillPersonFill style={{ fontSize: "25px" }} />
-          </StyledNavLink>
-        </ListItem>
-        <ListItem>
-          <ShoppingCartLink />
-        </ListItem>
-        <HamburgerMenuWrapper>
-          <HamburgerMenu />
+
+      <RightIconsWrapper>
+        <ShoppingCartLink />
+        <StyledNavLink to="/login">
+          <BsFillPersonFill style={{ fontSize: "25px" }} />
+        </StyledNavLink>
+        <HamburgerMenuWrapper onClick={toggleMenu}>
+          {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
         </HamburgerMenuWrapper>
-      </IconLinksWrapper>
+      </RightIconsWrapper>
     </NavbarWrapper>
   );
 };

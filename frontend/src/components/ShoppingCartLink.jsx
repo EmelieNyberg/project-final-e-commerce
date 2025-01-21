@@ -1,5 +1,3 @@
-// ShoppingCartLink.jsx
-
 import { NavLink } from "react-router-dom";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import styled from "styled-components";
@@ -44,14 +42,17 @@ const Badge = styled.div`
 `;
 
 export const ShoppingCartLink = () => {
-  const cartItemCount = useCartStore((state) => state.cartItemCount);
+  const cartItems = useCartStore((state) => state.cartItems);
+
+  // Räkna det totala antalet produkter i varukorgen
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <CartWrapper>
       <StyledNavLink to="/shoppingcart" activeClassName="active">
         <PiShoppingCartSimpleBold style={{ fontSize: "25px" }} />
       </StyledNavLink>
-      {cartItemCount > 0 && <Badge>{cartItemCount}</Badge>} {/* Visa bara badge om det finns produkter */}
+      {totalQuantity > 0 && <Badge>{totalQuantity}</Badge>} {/* Visa bara badge om det finns produkter */}
     </CartWrapper>
   );
 };
