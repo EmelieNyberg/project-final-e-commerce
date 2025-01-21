@@ -1,21 +1,20 @@
-// SignUpPage.jsx
+// LogIn.jsx
 
 import { useState } from "react";
-import { Header } from "../components/Header";
 import styled from "styled-components";
 
-const SignUpContainer = styled.div`
+const LogInContainer = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 30px 10px;
   font-family: "Poppins", serif;
 `;
 
-const SignUpHeader = styled.h2`
+const LogInHeader = styled.h2`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-const SignUpWrapper = styled.div`
+const LogInWrapper = styled.div`
   border: 1px solid lightgrey;
   border-radius: 5px;
   padding: 35px 42px;
@@ -49,22 +48,16 @@ const Input = styled.input`
   }
 `;
 
-const CheckboxLabel = styled.label`
+const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-  cursor: pointer;
-`;
-
-const CheckboxInput = styled.input`
-  cursor: pointer;
+  gap: 10px;
+  margin-top: 20px;
 `;
 
 const StyledButton = styled.button`
   background-color: #c79ced; // Lila bakgrund
   color: white;               // Vit text
-  margin-top: 20px;
   padding: 12px 24px;         // Padding för att göra knappen större
   border: none;               // Ingen kant
   border-radius: 30px;        // Rundade hörn
@@ -85,112 +78,86 @@ const StyledButton = styled.button`
   }
 `;
 
+const RegisterText = styled.p`
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+`;
+
+const RegisterLink = styled.a`
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+    color: #ff7bbc;
+  }
+`;
+
 const ErrorMessage = styled.p`
   color: #AA0000;
   margin-top: 10px;
   font-size: 14px;
 `;
 
-
-
-export const SignUpPage = () => {
+export const LogIn = () => {
+  // Handle data from form
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    password: "",
-    acceptTerms: false,
+    password: ""
   });
 
+  // Handle error messages from backend
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Handle data that is written in form (not submitted yet)
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
+  // Function to send data to backend when submitted
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Clean earlier error messages if there are any
+    // Nollställ tidigare felmeddelande
     setErrorMessage("");
 
-    // Post data to the backend
     try {
-      const response = await fetch("http://localhost:8080/users/signup", {
+      const response = await fetch("http://localhost:8080/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
           email: formData.email,
-          password: formData.password,
+          password: formData.password
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        alert("User created successfully!");
-        // Clean all inputfields
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          acceptTerms: false,
-        });
+        alert("Login successful!");
+        // Här kan du hantera accessToken eller navigera användaren vidare
       } else {
-        setErrorMessage(data.message); // Show error messages from backend
+        setErrorMessage(data.message); // Show error message from backend
       }
-    } catch (error) {
-      setErrorMessage("An error occurred. Please try again later.");
+    } catch (err) {
+      setErrorMessage("An error occurd. Please try again later.");
     }
   };
 
   const isFormValid =
-    formData.firstName &&
-    formData.lastName &&
     formData.email &&
-    formData.password &&
-    formData.acceptTerms;
+    formData.password;
 
   return (
     <>
-      <Header title="Sign up" subtitle="Sign up" />
-
-      <SignUpContainer>
-        <SignUpHeader>Sign Up</SignUpHeader>
-        <SignUpWrapper>
+      <LogInContainer>
+        <LogInHeader>Log In</LogInHeader>
+        <LogInWrapper>
           <form onSubmit={handleSubmit}>
-            <FormField>
-              <Label htmlFor="firstName">
-                FIRST NAME <Asterisk>*</Asterisk>
-              </Label>
-              <Input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-              />
-            </FormField>
-
-            <FormField>
-              <Label htmlFor="lastname">
-                LAST NAME <Asterisk>*</Asterisk>
-              </Label>
-              <Input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-              />
-            </FormField>
 
             <FormField>
               <Label htmlFor="email">
@@ -218,26 +185,17 @@ export const SignUpPage = () => {
               />
             </FormField>
 
-            <CheckboxLabel>
-              <CheckboxInput
-                type="checkbox"
-                name="acceptTerms"
-                checked={formData.acceptTerms}
-                onChange={handleChange}
-              />
-              I accept the terms and conditions <Asterisk>*</Asterisk>
-            </CheckboxLabel>
-
-            <StyledButton
-              type="submit"
-              disabled={!isFormValid}>
-              Sign Up
-            </StyledButton>
+            <ButtonWrapper>
+              <StyledButton type="submit" disabled={!isFormValid}>
+                Log In
+              </StyledButton>
+              <RegisterText>Not a member yet? <RegisterLink href="/signup">Register</RegisterLink></RegisterText>
+            </ButtonWrapper>
           </form>
 
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-        </SignUpWrapper>
-      </SignUpContainer>
+        </LogInWrapper>
+      </LogInContainer>
     </>
   );
 };
