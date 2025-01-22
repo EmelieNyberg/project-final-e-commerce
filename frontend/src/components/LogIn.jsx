@@ -1,6 +1,7 @@
 // LogIn.jsx
 
-import { useState } from "react";
+import { useUserFormStore } from "../stores/UserFormStore";
+import { useUserStore } from "../stores/UserStore";
 import styled from "styled-components";
 
 const LogInContainer = styled.div`
@@ -100,30 +101,19 @@ const ErrorMessage = styled.p`
 `;
 
 export const LogIn = () => {
-  // Handle data from form
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
-
-  // Handle error messages from backend
-  const [errorMessage, setErrorMessage] = useState("");
+  const { formData, updateFormData, errorMessage, updateErrorMessage, resetForm } = useUserFormStore();
+  const { setUser } = useUserStore();
 
   // Handle data that is written in form (not submitted yet)
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    updateFormData({ [name]: value });
   };
 
   // Function to send data to backend when submitted
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Nollställ tidigare felmeddelande
-    setErrorMessage("");
 
     try {
       const response = await fetch("http://localhost:8080/users/login", {
@@ -140,11 +130,16 @@ export const LogIn = () => {
       if (response.ok) {
         alert("Login successful!");
         // Här kan du hantera accessToken eller navigera användaren vidare
+
+        // Save accessToken in localStorage
+        localStorage.setItem("accessToken", data.accessToken);
+
+        resetForm(); // Clean form from input text and error message
       } else {
-        setErrorMessage(data.message); // Show error message from backend
+        updateErrorMessage(data.message); // Show error message from backend
       }
     } catch (err) {
-      setErrorMessage("An error occurd. Please try again later.");
+      updateErrorMessage("An error occurd. Please try again later.");
     }
   };
 
@@ -156,6 +151,7 @@ export const LogIn = () => {
     <>
       <LogInContainer>
         <LogInHeader>Log In</LogInHeader>
+
         <LogInWrapper>
           <form onSubmit={handleSubmit}>
 
@@ -189,6 +185,7 @@ export const LogIn = () => {
               <StyledButton type="submit" disabled={!isFormValid}>
                 Log In
               </StyledButton>
+
               <RegisterText>Not a member yet? <RegisterLink href="/signup">Register</RegisterLink></RegisterText>
             </ButtonWrapper>
           </form>

@@ -6,6 +6,17 @@ import User from "../schemas/userSchema.js";
 
 const router = express.Router();
 
+// Authenticate user function
+const authenticateUser = async (req, res, next) => {
+  const user = await User.findOne({ accessToken: req.header("Authorization") });
+  if (user) {
+    req.user = user; // Lagra användaruppgifterna i req för senare användning
+    next();
+  } else {
+    res.status(401).json({ message: "Couldn't authenticate user." });
+  }
+};
+
 // Skapa en ny användare
 router.post("/signup", async (req, res) => {
   try {
@@ -91,9 +102,8 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
-    // Return user data and accessToken
+    // Return accessToken
     res.json({
-      userId: user._id,
       accessToken: user.accessToken
     });
   } catch (err) {
@@ -102,6 +112,14 @@ router.post("/login", async (req, res) => {
       errors: err.message
     });
   }
+});
+
+router.get("/my-account", authenticateUser, (req, res) => {
+  const user = req.user; // Get user from autenticateUser
+  res.json({
+    firstName: user.firstName,
+    lastName: user.lastName,
+  });
 });
 
 export default router;

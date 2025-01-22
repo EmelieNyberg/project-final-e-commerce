@@ -1,6 +1,6 @@
 // SignUpPage.jsx
 
-import { useState } from "react";
+import { useUserFormStore } from "../stores/UserFormStore";
 import { Header } from "../components/Header";
 import styled from "styled-components";
 
@@ -91,32 +91,17 @@ const ErrorMessage = styled.p`
   font-size: 14px;
 `;
 
-
-
 export const SignUpPage = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    acceptTerms: false,
-  });
-
-  const [errorMessage, setErrorMessage] = useState("");
+  const { formData, updateFormData, errorMessage, updateErrorMessage, resetForm } = useUserFormStore();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+
+    updateFormData({ [name]: type === "checkbox" ? checked : value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Clean earlier error messages if there are any
-    setErrorMessage("");
 
     // Post data to the backend
     try {
@@ -135,19 +120,14 @@ export const SignUpPage = () => {
 
       if (response.ok) {
         alert("User created successfully!");
+
         // Clean all inputfields
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          acceptTerms: false,
-        });
+        resetForm();
       } else {
-        setErrorMessage(data.message); // Show error messages from backend
+        updateErrorMessage(data.message); // Show error messages from backend
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again later.");
+      updateErrorMessage("An error occurred. Please try again later.");
     }
   };
 
@@ -164,6 +144,7 @@ export const SignUpPage = () => {
 
       <SignUpContainer>
         <SignUpHeader>Sign Up</SignUpHeader>
+
         <SignUpWrapper>
           <form onSubmit={handleSubmit}>
             <FormField>

@@ -132,7 +132,7 @@ export const Navbar = () => {
 
       <RightIconsWrapper>
         <ShoppingCartLink />
-        <StyledNavLink to="/login">
+        <StyledNavLink to="/my-account">
           <BsFillPersonFill style={{ fontSize: "25px" }} />
         </StyledNavLink>
         <HamburgerMenuWrapper onClick={toggleMenu}>
