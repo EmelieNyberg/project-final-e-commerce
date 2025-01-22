@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Header } from "../components/Header";
 import { RxCross2 } from "react-icons/rx";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { useCartStore } from "../stores/CartStore";
+import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
-import { DeliveryAndPaymentModal } from "../components/DeliveryAndPaymentModal";
 
 const ShoppingCartContainer = styled.div`
   max-width: 600px;
@@ -110,18 +110,56 @@ const CheckoutButton = styled.button`
   }
 `;
 
+
+
+
+
+
+
+
+
+
+
 export const ShoppingCart = () => {
   const { cartItems, updateQuantity } = useCartStore();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleToggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+
+  const stripePromise = loadStripe("pk_test_51Qjgfi08VDFOASl7772yGlzpdZoJuKmfDfGjuXczCpauS8FwNmQXJlrtOyDoXR7uWKQyh9mT3A6nVuFdsTjHdxNy00bD8RSZJE");
+
+  const handleCheckout = async () => {
+    // setIsLoading(true);
+    try {
+      const response = await fetch("http://localhost:8080/create-checkout-sessios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: cartItems.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+          })),
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        const stripe = await stripePromise;
+        stripe.redirectToCheckout({ sessionId: data.id });
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+      alert("Något gick fel. Försök igen.");
+    }
+  };
 
   return (
     <>
@@ -172,9 +210,90 @@ export const ShoppingCart = () => {
           <h3>Total:</h3>
           <h3>${totalPrice.toFixed(2)}</h3>
         </SummaryCart>
-        <CheckoutButton onClick={handleToggleModal}>Proceed to Checkout</CheckoutButton>
-        {isModalOpen && <DeliveryAndPaymentModal onClose={handleToggleModal} />}
+        <CheckoutButton onClick={handleCheckout} disabled={isLoading}>
+          {isLoading ? "Processing..." : "Proceed to Checkout"}
+        </CheckoutButton>
       </ShoppingCartContainer>
     </>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const ShoppingCart = () => {
+//   const { cartItems, updateQuantity } = useCartStore();
+
+//   const totalPrice = cartItems.reduce(
+//     (sum, item) => sum + item.price * item.quantity,
+//     0
+//   );
+
+//   return (
+//     <>
+//       <Header title="Shopping Cart" subtitle="Manage your items" />
+//       <ShoppingCartContainer>
+//         {cartItems.map((item) => (
+//           <CartWrapper key={`${item.id}-${item.size}`}>
+//             <a href={`/products/${item.id}`}>
+//               <ProductImg src={item.image?.url} alt={item.title} />
+//             </a>
+//             <ProductDetails>
+//               <StyledTitle>
+//                 <a href={`/products/${item.id}`}>{item.title}</a>
+//               </StyledTitle>
+//               <p>Price: ${item.price}</p>
+//               <p>Size: {item.size}</p>
+//               <QuantityWrapper>
+//                 <QuantityButton
+//                   onClick={() =>
+//                     updateQuantity(item.id, item.size, item.quantity - 1)
+//                   }
+//                 >
+//                   <FaMinus />
+//                 </QuantityButton>
+//                 <QuantityNumber>{item.quantity}</QuantityNumber>
+//                 <QuantityButton
+//                   onClick={() =>
+//                     updateQuantity(item.id, item.size, item.quantity + 1)
+//                   }
+//                 >
+//                   <FaPlus />
+//                 </QuantityButton>
+//               </QuantityWrapper>
+//             </ProductDetails>
+//             <ActionWrapper>
+//               <CrossButton
+//                 onClick={() => updateQuantity(item.id, item.size, 0)}
+//               >
+//                 <RxCross2 />
+//               </CrossButton>
+//               <TotalPrice>
+//                 ${(item.price * item.quantity).toFixed(2)}
+//               </TotalPrice>
+//             </ActionWrapper>
+//           </CartWrapper>
+//         ))}
+//         <SummaryCart>
+//           <h3>Total:</h3>
+//           <h3>${totalPrice.toFixed(2)}</h3>
+//         </SummaryCart>
+//         <CheckoutButton onClick={handleToggleModal}>Proceed to Checkout</CheckoutButton>
+//         {isModalOpen && <DeliveryAndPaymentModal onClose={handleToggleModal} />}
+//       </ShoppingCartContainer>
+//     </>
+//   );
+// };

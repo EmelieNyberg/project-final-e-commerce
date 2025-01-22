@@ -20,9 +20,11 @@ app.use(express.json());
 // Import and use routes
 import productsRoutes from "./routes/products.js";
 import usersRoutes from "./routes/users.js";
+import stripeRoutes from "./routes/sripe.js";
 
 app.use("/products", productsRoutes);
 app.use("/users", usersRoutes);
+app.use("/", stripeRoutes);
 
 // Start the server
 app.listen(port, () => {
