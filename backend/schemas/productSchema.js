@@ -26,7 +26,7 @@ const productSchema = new Schema({
         required: true
     },
     price: { // Price (e.g., "$65.00")
-        type: String,
+        type: Number,
         required: true
     },
     material: { // Material (e.g., "100% Polyester")

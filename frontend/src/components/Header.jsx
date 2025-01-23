@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const HeaderContainer = styled.div`
   text-align: center;
   padding: 20px;
-  background-color: rgb(255, 236, 250);
+  background-color: #ffecfa;
 `;
 
 const Title = styled.h2`

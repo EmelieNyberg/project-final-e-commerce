@@ -135,7 +135,7 @@ export const ShoppingCart = () => {
   const handleCheckout = async () => {
     // setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/create-checkout-sessios", {
+      const response = await fetch("http://localhost:8080/create-checkout-session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -149,6 +149,7 @@ export const ShoppingCart = () => {
       });
 
       const data = await response.json();
+
       if (response.ok) {
         const stripe = await stripePromise;
         stripe.redirectToCheckout({ sessionId: data.id });

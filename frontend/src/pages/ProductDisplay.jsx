@@ -129,7 +129,8 @@ export const ProductDisplay = () => {
     addToCart({
       id: product.id,
       title: product.title,
-      price: parseFloat(product.price.replace("$", "")),
+      price: product.price,
+      // price: parseFloat(product.price.replace("$", "")),
       size: selectedSize,
       quantity,
       image: product.image,
