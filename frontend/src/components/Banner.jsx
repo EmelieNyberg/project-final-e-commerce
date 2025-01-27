@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const StyledBanner = styled.section`
   background-color: ${({ theme }) => theme.colors.Banner};  
   color: ${({ theme }) => theme.colors.Font2};               
-  padding: 10px 20px;         
+  padding: 10px 60px;         
   font-family: ${({ theme }) => theme.fonts.Font2};
   font-weight: 300;
   font-size: 14px; 

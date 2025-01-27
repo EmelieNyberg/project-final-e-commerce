@@ -8,10 +8,7 @@ const StyledServiceBanner = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-  background-color: #edd8ff;
+  padding: 30px;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -28,23 +25,26 @@ const StyledServiceInfo = styled.div`
   align-items: center;
   text-align: center;
   gap: 10px;
-  padding: 10px;
+  color: ${({ theme }) => theme.colors.Font1};
 
   h3 {
-    font-size: 1.2rem;
+    font-family: ${({ theme }) => theme.fonts.Font1};
+    font-size: 20px;
     font-weight: bold;
     margin: 0;
   }
 
   p {
-    font-size: 0.9rem;
-    color: #666;
+    font-family: ${({ theme }) => theme.fonts.Font2};
+    font-size: 16px;
+    font-weight: 300;
+    color: ${({ theme }) => theme.colors.Font1};
     margin: 0;
   }
 
   svg {
     font-size: 2rem;
-    color: #a066ff;
+    color: ${({ theme }) => theme.colors.Btn1};
   }
 `;
 

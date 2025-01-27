@@ -1,47 +1,47 @@
-import styled from "styled-components";
+// Footer.jsx
+
 import { PiFacebookLogoBold } from "react-icons/pi";
 import { TbBrandTwitter } from "react-icons/tb";
 import { PiInstagramLogoBold } from "react-icons/pi";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { FaYoutubeSquare } from "react-icons/fa";
+import styled from "styled-components";
 
-// Huvudcontainer för footern
 const StyledFooter = styled.footer`
   width: 100%;
-  background-color: #0e1216;
+  background-color: ${({ theme }) => theme.colors.Footer};
   padding: 20px 0;
   display: flex;
   flex-direction: column;
 `;
 
-// Sektioner i footern
 const FooterSection = styled.section`
-  flex: 1;
-  min-width: 200px;
+  // flex: 1;
+  width: 300px;
   margin: 10px;
 
   h2 {
     font-size: 18px;
-    font-family: "Poppins", serif;
+    font-family: ${({ theme }) => theme.fonts.Font2};
     margin-bottom: 10px;
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.Font2};
   }
 
   p {
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-weight: 400; */
+    font-family: ${({ theme }) => theme.fonts.Font1};
     margin-bottom: 10px;
     margin-right: 40px;
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.Font2};
   }
 
   a {
+    text-decoration: none;
     display: block;
     font-size: 16px;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 5px 0;
+    color: ${({ theme }) => theme.colors.Font2};
+    font-family: ${({ theme }) => theme.fonts.Font1};
+    margin: 10px 0;
 
     &:hover {
       text-decoration: underline;
@@ -52,7 +52,7 @@ const FooterSection = styled.section`
 // Layout för att gruppera sektionerna
 const FooterContent = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
   box-sizing: border-box;
@@ -67,10 +67,10 @@ const FooterBottom = styled.div`
   width: 100%;
   text-align: center;
   margin-top: 20px;
-  color: white;
+  color: ${({ theme }) => theme.colors.Font2};
 
   p {
-    font-family: "Poppins", serif;
+    font-family: ${({ theme }) => theme.fonts.Font2};
     margin: 0;
     font-size: 16px;
     margin-bottom: 20px;
@@ -78,11 +78,11 @@ const FooterBottom = styled.div`
 
   a {
     margin: 0 10px; /* Avstånd mellan ikoner */
-    color: white;
+    color: ${({ theme }) => theme.colors.Font2};
     font-size: 24px; /* Ikonstorlek */
 
     &:hover {
-      color: #007bff; /* Ändra färg vid hover */
+      color: ${({ theme }) => theme.colors.BtnLinkHover}; /* Ändra färg vid hover */
     }
   }
 `;
