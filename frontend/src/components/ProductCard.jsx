@@ -9,6 +9,9 @@ const ProductCardContainer = styled.div`
   margin: auto;
   padding: 2% 0;
 
+
+  
+
   /* För surfplattor */
   @media (max-width: 1024px) {
     grid-template-columns: repeat(3, 1fr); /* Tre på rad för mindre skärmar */
@@ -33,7 +36,7 @@ const CardTextWrapper = styled.div`
 
   img {
     width: 100%;
-    height: auto;
+    /* height: 537px; */
     object-fit: cover;
    
   }
@@ -62,7 +65,7 @@ export const ProductCard = ({ products = [] }) => {
             />
             <h3>{product.title}</h3>
             <p>{product.category}</p>
-            <p>{product.price}</p>
+            <p>${product.price}</p>
           </Link>
         </CardTextWrapper>
       ))}

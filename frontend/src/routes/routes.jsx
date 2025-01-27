@@ -8,7 +8,7 @@ import { ProductDisplay } from "../pages/ProductDisplay";
 import { ProductsPage } from "../pages/ProductsPage";
 import { ShoppingCart } from "../pages/ShoppingCart";
 import { SignUpPage } from "../pages/SignUpPage";
-// import { CheckOut } from "../pages/CheckOut"; //
+import { OrderConfirmation } from "../pages/OrderConfirmation";
 
 import { Route } from "react-router-dom";
 
@@ -24,7 +24,7 @@ export const routes = (
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/shoppingcart" element={<ShoppingCart />} />
         <Route path="/signup" element={<SignUpPage />} />
-        {/* <Route path="/checkout" element={<CheckOut />} /> */}
+        <Route path="/orderconfirmation" element={<OrderConfirmation />} />
 
         {/* <Route path="*" element={<PageNotFound />} /> */}
     </>
