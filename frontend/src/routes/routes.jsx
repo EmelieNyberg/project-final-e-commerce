@@ -19,12 +19,14 @@ export const routes = (
     <Route path="/about" element={<AboutUs />} />
     {/* <Route path="/checkout" element={<CheckOut />} /> */}
     <Route path="/contact" element={<Contact />} />
+    <Route path="/login" element={<LoginPage />} />
     <Route path="/my-account" element={<MyAccount />} />
     <Route path="/products" element={<ProductsPage />} />
     <Route path="/products/:id" element={<ProductDisplay />} />
     <Route path="/products" element={<ProductsPage />} />
     <Route path="/shoppingcart" element={<ShoppingCart />} />
     <Route path="/signup" element={<SignUpPage />} />
+    <Route path="/orderconfirmation" element={<OrderConfirmation />} />
     {/* <Route path="/checkout" element={<CheckOut />} /> */}
 
     {/* <Route path="*" element={<PageNotFound />} /> */}
