@@ -28,7 +28,7 @@ router.post("/create-checkout-session", async (req, res) => {
         if (!product) throw new Error(`Produkt med id ${item.id} hittades inte.`);
         return {
           price_data: {
-            currency: "eur",
+            currency: "USD",
             product_data: {
               name: product.title,
               images: [product.image.url],
@@ -44,7 +44,7 @@ router.post("/create-checkout-session", async (req, res) => {
       line_items: lineItems,
       mode: "payment",
 
-      success_url: "http://localhost:5173/",
+      success_url: "http://localhost:5173/orderconfirmation",
       cancel_url: "http://localhost:5173/",
 
       // success_url: `${process.env.REACT_APP_BACKEND_URL}/success`,

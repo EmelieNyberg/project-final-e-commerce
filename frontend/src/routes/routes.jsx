@@ -9,7 +9,7 @@ import { ProductDisplay } from "../pages/ProductDisplay";
 import { ProductsPage } from "../pages/ProductsPage";
 import { ShoppingCart } from "../pages/ShoppingCart";
 import { SignUpPage } from "../pages/SignUpPage";
-// import { CheckOut } from "../pages/CheckOut"; //
+import { OrderConfirmation } from "../pages/OrderConfirmation";
 
 import { Route } from "react-router-dom";
 
@@ -20,7 +20,6 @@ export const routes = (
     {/* <Route path="/checkout" element={<CheckOut />} /> */}
     <Route path="/contact" element={<Contact />} />
     <Route path="/my-account" element={<MyAccount />} />
-    <Route path="/login" element={<LoginPage />} />
     <Route path="/products" element={<ProductsPage />} />
     <Route path="/products/:id" element={<ProductDisplay />} />
     <Route path="/products" element={<ProductsPage />} />
