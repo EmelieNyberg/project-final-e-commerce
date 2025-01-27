@@ -10,8 +10,9 @@ const StyledButton = styled.button`
   padding: 12px 24px;         // Padding för att göra knappen större
   border: none;               // Ingen kant
   border-radius: 30px;        // Rundade hörn
+  font-family: ${({ theme }) => theme.fonts.Font2};
   font-size: 16px;            // Textstorlek
-  font-weight: bold;          // Fetstil
+  font-weight: 500;          // Fetstil
   display: flex;              // Flexbox för att placera text och ikon
   align-items: center;        // Centrerar texten och ikonen vertikalt
   justify-content: center;    // Centrerar innehållet horisontellt
@@ -30,9 +31,9 @@ const StyledButton = styled.button`
 `;
 
 export const Button = ({ text }) => {
-    return (
-        <StyledButton>
-            {text} <IoArrowForward />
-        </StyledButton>
-    );
+  return (
+    <StyledButton>
+      {text} <IoArrowForward />
+    </StyledButton>
+  );
 };

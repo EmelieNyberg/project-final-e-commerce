@@ -2,17 +2,19 @@
 
 import { useUserFormStore } from "../stores/UserFormStore";
 import { useUserStore } from "../stores/UserStore";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const LogInContainer = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 30px 10px;
-  font-family: "Poppins", serif;
+  font-family: ${({ theme }) => theme.fonts.Font2};
 `;
 
 const LogInHeader = styled.h2`
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ${({ theme }) => theme.fonts.Font1};
+  color: ${({ theme }) => theme.colors.Font1};
 `;
 
 const LogInWrapper = styled.div`
@@ -32,7 +34,7 @@ const Label = styled.label`
 `;
 
 const Asterisk = styled.span`
-  color: #AA0000;
+  color: ${({ theme }) => theme.colors.Font3};
 `;
 
 const Input = styled.input`
@@ -45,7 +47,7 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #ff7bbc;
+    border-color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 
@@ -57,24 +59,25 @@ const ButtonWrapper = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background-color: #c79ced; // Lila bakgrund
-  color: white;               // Vit text
+  background-color: ${({ theme }) => theme.colors.Btn1};
+  color: ${({ theme }) => theme.colors.Font2};               
   padding: 12px 24px;         // Padding för att göra knappen större
   border: none;               // Ingen kant
   border-radius: 30px;        // Rundade hörn
+  font-family: ${({ theme }) => theme.fonts.Font2};
   font-size: 16px;            // Textstorlek
-  font-weight: bold;          // Fetstil
+  font-weight: 500;          
   cursor: pointer;           // Markera knappen som klickbar
   transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
 
   // Lägg till hover-effekt
   &:hover {
-    background-color: #ff7bbc; // En något mörkare lila vid hover
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 
   &:disabled {
-    background-color: lightgray; /* Grå bakgrund när inaktiverad */
-    color: #666; /* Textfärg för inaktiverad knapp */
+    background-color: ${({ theme }) => theme.colors.BtnDisabled};
+    color: ${({ theme }) => theme.colors.Font4};
     cursor: not-allowed; /* Markör för inaktiverad */
   }
 `;
@@ -87,20 +90,22 @@ const RegisterText = styled.p`
 
 const RegisterLink = styled.a`
   text-decoration: underline;
+  color: ${({ theme }) => theme.colors.Font1};
 
   &:hover {
     text-decoration: none;
-    color: #ff7bbc;
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 
 const ErrorMessage = styled.p`
-  color: #AA0000;
+  color: ${({ theme }) => theme.colors.Font3};
   margin-top: 10px;
   font-size: 14px;
 `;
 
 export const LogIn = () => {
+  const navigate = useNavigate();
   const { formData, updateFormData, errorMessage, updateErrorMessage, resetForm } = useUserFormStore();
   const { setUser } = useUserStore();
 
@@ -128,13 +133,21 @@ export const LogIn = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Login successful!");
+        // alert("Login successful!");
         // Här kan du hantera accessToken eller navigera användaren vidare
 
         // Save accessToken in localStorage
         localStorage.setItem("accessToken", data.accessToken);
 
+        setUser(data);
+
+
+
         resetForm(); // Clean form from input text and error message
+
+        navigate("/my-account");
+        // window.location.reload();
+
       } else {
         updateErrorMessage(data.message); // Show error message from backend
       }

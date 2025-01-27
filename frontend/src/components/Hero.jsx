@@ -6,7 +6,7 @@ import cloudImage from "../assets/clouds-pattern.png";
 import toysImage from "../assets/baby-toys.png";
 
 const HeroContainer = styled.section`
-  background-color: rgb(255, 236, 250);  
+  background-color: ${({ theme }) => theme.colors.Header};  
 `;
 
 const StyledHero = styled.section`  
@@ -14,9 +14,9 @@ const StyledHero = styled.section`
   padding: 20px;
 
   /* For mobile phones */
-@media (max-width: 667px) {
-  flex-direction: column;
-}
+  @media (max-width: 667px) {
+    flex-direction: column;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -27,14 +27,14 @@ const TextContainer = styled.div`
 `;
 
 const HeroHeader = styled.h2`
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ${({ theme }) => theme.fonts.Font1};
   font-weight: 700;
   font-size: 35px; 
   margin: 0;
 `;
 
 const HeroParagraph = styled.p`
-  font-family: "Poppins", serif;
+  font-family: ${({ theme }) => theme.fonts.Font2};
   font-weight: 300;
   font-size: 18px; 
   margin: 30px 0 40px 0;
@@ -51,9 +51,9 @@ const ToysImg = styled.img`
   min-width: 200px;
 
   /* For mobile phones */
-@media (max-width: 667px) {
-  width: 50%;
-}
+  @media (max-width: 667px) {
+    width: 50%;
+  }
 `;
 
 const CloudPattern = styled.img`

@@ -1,5 +1,6 @@
 // SignUpPage.jsx
 
+import { useNavigate } from "react-router-dom";
 import { useUserFormStore } from "../stores/UserFormStore";
 import { Header } from "../components/Header";
 import styled from "styled-components";
@@ -8,11 +9,11 @@ const SignUpContainer = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 30px 10px;
-  font-family: "Poppins", serif;
+  font-family: ${({ theme }) => theme.fonts.Font2};
 `;
 
 const SignUpHeader = styled.h2`
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ${({ theme }) => theme.fonts.Font1};
 `;
 
 const SignUpWrapper = styled.div`
@@ -32,7 +33,7 @@ const Label = styled.label`
 `;
 
 const Asterisk = styled.span`
-  color: #AA0000;
+  color: ${({ theme }) => theme.colors.Font3};
 `;
 
 const Input = styled.input`
@@ -45,7 +46,7 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #ff7bbc;
+    border-color: ${({ theme }) => theme.colors.BtnLinkActive};
   }
 `;
 
@@ -62,8 +63,8 @@ const CheckboxInput = styled.input`
 `;
 
 const StyledButton = styled.button`
-  background-color: #c79ced; // Lila bakgrund
-  color: white;               // Vit text
+  background-color: ${({ theme }) => theme.colors.Btn1}; // Lila bakgrund
+  color: ${({ theme }) => theme.colors.Font2};               // Vit text
   margin-top: 20px;
   padding: 12px 24px;         // Padding för att göra knappen större
   border: none;               // Ingen kant
@@ -75,23 +76,24 @@ const StyledButton = styled.button`
 
   // Lägg till hover-effekt
   &:hover {
-    background-color: #ff7bbc; // En något mörkare lila vid hover
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover}; // En något mörkare lila vid hover
   }
 
   &:disabled {
-    background-color: lightgray; /* Grå bakgrund när inaktiverad */
-    color: #666; /* Textfärg för inaktiverad knapp */
+    background-color: ${({ theme }) => theme.colors.BtnDisabled}; /* Grå bakgrund när inaktiverad */
+    color: ${({ theme }) => theme.colors.Font4}; /* Textfärg för inaktiverad knapp */
     cursor: not-allowed; /* Markör för inaktiverad */
   }
 `;
 
 const ErrorMessage = styled.p`
-  color: #AA0000;
+  color: ${({ theme }) => theme.colors.Font3};
   margin-top: 10px;
   font-size: 14px;
 `;
 
 export const SignUpPage = () => {
+  const navigate = useNavigate();
   const { formData, updateFormData, errorMessage, updateErrorMessage, resetForm } = useUserFormStore();
 
   const handleChange = (e) => {
@@ -119,10 +121,9 @@ export const SignUpPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("User created successfully!");
-
-        // Clean all inputfields
-        resetForm();
+        alert("You have now signed up successfully! Please login to see your new account"); // Notification to user
+        resetForm(); // Clean all inputfields
+        navigate("/login"); // Navigate to login page
       } else {
         updateErrorMessage(data.message); // Show error messages from backend
       }

@@ -1,12 +1,59 @@
 // MyAccount.jsx
 
-
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../stores/UserStore";
 import { Header } from "../components/Header";
-import { LogIn } from "../components/LogIn";
+import styled from "styled-components";
+
+const MyAccountContainer = styled.div`
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+  padding: 30px 10px;
+`;
+
+const WelcomeMessage = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.Font1};
+  color: ${({ theme }) => theme.colors.Font1};
+`;
+
+const WelcomeText = styled.p`
+  font-family: ${({ theme }) => theme.fonts.Font2};
+  font-weight: 300;
+  color: ${({ theme }) => theme.colors.Font1};
+`;
+
+const ContactLink = styled.a`
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.Font1};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
+    text-decoration: none;
+  }
+`;
+
+const StyledButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.Btn1};
+  color: ${({ theme }) => theme.colors.Font2};              
+  padding: 12px 24px;         
+  border: none;               
+  border-radius: 30px;        
+  font-family: ${({ theme }) => theme.fonts.Font2};
+  font-size: 16px;            
+  font-weight: 500;         
+  cursor: pointer;           
+  transition: background-color 0.3s ease; 
+
+  // Hover-effect
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover};
+  }
+`;
 
 export const MyAccount = () => {
+  const navigate = useNavigate();
   const { user, setUser, clearUser } = useUserStore();
 
   useEffect(() => {
@@ -41,56 +88,26 @@ export const MyAccount = () => {
     fetchMyAccount();
   }, [setUser, clearUser]);
 
-  const handleLogout = () => {
-    clearUser();
-    localStorage.removeItem("accessToken"); // Ta bort token vid utloggning
+  const handleLogout = () => { // On click
+    clearUser(); // Clear user info
+    localStorage.removeItem("accessToken"); // Remove Access token from local storage
+    alert("You are now logged out, see you again soon!"); // Give user en alert to notify them that they are logged out
+    navigate("/");
   };
 
   return (
     <>
-      <Header title="My account" subtitle="My account" />
+      <Header title="My Account" subtitle="Account Details" />
       {user ? (
-        <div>
-          <h2>Welcome {user.firstName} {user.lastName}!</h2>
-          <button onClick={handleLogout}>Log Out</button>
-        </div>
-      ) : (
-        <LogIn />
-      )}
+        <MyAccountContainer>
+          <WelcomeMessage>Welcome {user.firstName} {user.lastName}!</WelcomeMessage>
+          <WelcomeText>We're happy to see you again. Here, you can view your recent orders, update your profile, and explore your favorites. Need assistance? Don’t hesitate to contact our <ContactLink href="/contact">customer service</ContactLink>.</WelcomeText>
+          <StyledButton onClick={handleLogout}>
+            Log Out
+          </StyledButton>
+        </MyAccountContainer>
+      ) : null
+      }
     </>
   );
 };
-
-
-
-
-
-
-
-
-
-// import { useUserStore } from "../stores/UserStore";
-// import { Header } from "../components/Header";
-// import { LogIn } from "../components/LogIn";
-
-// export const MyAccount = () => {
-//   const { user, clearUser } = useUserStore();
-
-//   const handleLogout = () => {
-//     clearUser();
-//   };
-
-//   return (
-//     <>
-//       <Header title="My account" subtitle="My account" />
-//       {user ? (
-//         <div>
-//           <h2>Welcome {user.firstName} {user.lastName}!</h2>
-//           <button onClick={handleLogout}>Log Out</button>
-//         </div>
-//       ) : (
-//         <LogIn />
-//       )}
-//     </>
-//   );
-// };

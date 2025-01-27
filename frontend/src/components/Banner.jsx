@@ -3,10 +3,10 @@
 import styled from 'styled-components';
 
 const StyledBanner = styled.section`
-  background-color: #c79ced;  
-  color: white;               
+  background-color: ${({ theme }) => theme.colors.Banner};  
+  color: ${({ theme }) => theme.colors.Font2};               
   padding: 10px 20px;         
-  font-family: "Poppins", serif;
+  font-family: ${({ theme }) => theme.fonts.Font2};
   font-weight: 300;
   font-size: 14px; 
 `;

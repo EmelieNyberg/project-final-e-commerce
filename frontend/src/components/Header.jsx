@@ -7,28 +7,29 @@ import styled from 'styled-components';
 const HeaderContainer = styled.div`
   text-align: center;
   padding: 20px;
-  background-color: #ffecfa;
+  background-color: ${({ theme }) => theme.colors.Header};
 `;
 
 const Title = styled.h2`
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ${({ theme }) => theme.fonts.Font1};
   font-size: 48px;
-  color: black;
+  color: ${({ theme }) => theme.colors.Font1};
 `;
 
 const Subtitle = styled.p`
-  font-family: "Poppins", serif;
+  font-family: ${({ theme }) => theme.fonts.Font2};
   font-weight: 300;
   font-size: 16px;
-  color: black;
+  color: ${({ theme }) => theme.colors.Font1};
 `;
 
 const HomeLink = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: ${({ theme }) => theme.colors.Font1};
 
   &:hover {
     text-decoration: underline;
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 

@@ -1,5 +1,5 @@
 import { ShoppingCartLink } from "./ShoppingCartLink";
-import { BsFillPersonFill } from "react-icons/bs";
+import { MyAccountLink } from "./MyAccountLink";
 import { FaBars } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
@@ -132,9 +132,9 @@ export const Navbar = () => {
 
       <RightIconsWrapper>
         <ShoppingCartLink />
-        <StyledNavLink to="/my-account">
-          <BsFillPersonFill style={{ fontSize: "25px" }} />
-        </StyledNavLink>
+
+        <MyAccountLink />
+
         <HamburgerMenuWrapper onClick={toggleMenu}>
           {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
         </HamburgerMenuWrapper>
