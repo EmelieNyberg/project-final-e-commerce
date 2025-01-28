@@ -5,7 +5,7 @@ import { ProductCard } from "../components/ProductCard";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
-  background-color: #fbf6f8;
+  background-color: ${({ theme }) => theme.colors.Background};
   padding: 30px;
 `;
 

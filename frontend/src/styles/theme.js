@@ -7,7 +7,8 @@ export const theme = {
     Font3: "#AA0000", // Error message
     Font4: "#666666", // Gray
     Header: "#ffecfa", // Light pink
-    Footer: "#000000", // Dark gray
+    Background: "#fbf6f8", // Pale pink
+    Footer: "#202020", // Dark gray
     Banner: "#c79ced", // Light purple
     Btn1: "#c79ced", // Light purple
     BtnLinkHover: "#ff7bbc", // Pink

@@ -8,17 +8,23 @@ import { FaYoutubeSquare } from "react-icons/fa";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  width: 100%;
   background-color: ${({ theme }) => theme.colors.Footer};
-  padding: 20px 0;
+  padding: 60px;
   display: flex;
   flex-direction: column;
 `;
 
+// Layout för att gruppera sektionerna
+const FooterContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
 const FooterSection = styled.section`
-  // flex: 1;
   width: 300px;
-  margin: 10px;
 
   h2 {
     font-size: 18px;
@@ -49,24 +55,11 @@ const FooterSection = styled.section`
   }
 `;
 
-// Layout för att gruppera sektionerna
-const FooterContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-  box-sizing: border-box;
-
-  @media (min-width: 768px) {
-    padding: 0px 100px;
-  }
-`;
-
 // Sektion för copyright och ikoner
 const FooterBottom = styled.div`
   width: 100%;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 60px;
   color: ${({ theme }) => theme.colors.Font2};
 
   p {

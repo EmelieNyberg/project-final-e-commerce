@@ -13,9 +13,15 @@ const StyledHero = styled.section`
   display: flex; 
   padding: 20px 60px;
 
+   /* For tablets */
+   @media (max-width: 1024px) {
+    padding-top: 60px;
+  }
+
   /* For mobile phones */
   @media (max-width: 667px) {
     flex-direction: column;
+    padding-top: 60px;
   }
 `;
 
@@ -50,9 +56,14 @@ const ImageContainer = styled.div`
 const ChildImg = styled.img`
   max-width: 500px;
 
+  @media (max-width: 1024px) {
+    max-width: 300px;
+  }
+
   /* For mobile phones */
   @media (max-width: 667px) {
-    width: 50%;
+    margin-top: 50px;
+    width: 100%;
   }
 `;
 
@@ -74,7 +85,7 @@ export const Hero = () => {
             Explore our collection of toys, clothing, and more. Carefully selected to keep your child entertained, safe, and happy.
           </HeroParagraph>
 
-          <Button text="Shop now" />
+          <Button text="Shop now" route="/products" />
         </TextContainer>
 
         <ImageContainer>

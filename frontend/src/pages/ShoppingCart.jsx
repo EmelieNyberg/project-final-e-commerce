@@ -11,7 +11,7 @@ const ShoppingCartContainer = styled.div`
   max-width: 600px;
   margin: auto;
   padding: 30px 0;
-  font-family: "Poppins", serif;
+  font-family: ${({ theme }) => theme.fonts.Font2};
 `;
 
 const CartWrapper = styled.div`
@@ -31,6 +31,10 @@ const ProductImg = styled.img`
   height: 150px;
   width: 150px;
   object-fit: cover;
+
+  &&:hover {
+    filter: brightness(80%);
+  }
 `;
 
 const ProductDetails = styled.div`
@@ -39,6 +43,15 @@ const ProductDetails = styled.div`
 
 const StyledTitle = styled.h4`
   margin-top: 0;
+
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.Font1};
+  }
+
+  a:hover {
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
+  }
 `;
 
 const QuantityWrapper = styled.div`
@@ -54,7 +67,7 @@ const QuantityButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: #ff7bbc;
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 
@@ -75,11 +88,11 @@ const CrossButton = styled.button`
   background: none;
   border: none;
   font-size: 20px;
-  color: red;
+  color: ${({ theme }) => theme.colors.Font1};
   cursor: pointer;
 
   &:hover {
-    color: #ff7bbc;
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 
@@ -94,7 +107,7 @@ const SummaryCart = styled.div`
 `;
 
 const CheckoutButton = styled.button`
-  background-color: lightgray;
+  background-color: ${({ theme }) => theme.colors.BtnDisabled};
   padding: 12px 24px;
   border: none;
   border-radius: 30px;
@@ -105,20 +118,10 @@ const CheckoutButton = styled.button`
   width: 100%;
 
   &:hover {
-    background-color: #ff7bbc;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover};
+    color: ${({ theme }) => theme.colors.Font2};
   }
 `;
-
-
-
-
-
-
-
-
-
-
 
 export const ShoppingCart = () => {
   const { cartItems, updateQuantity } = useCartStore();
@@ -128,7 +131,6 @@ export const ShoppingCart = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-
 
   const stripePromise = loadStripe("pk_test_51Qjgfi08VDFOASl7772yGlzpdZoJuKmfDfGjuXczCpauS8FwNmQXJlrtOyDoXR7uWKQyh9mT3A6nVuFdsTjHdxNy00bD8RSZJE");
 
