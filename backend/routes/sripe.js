@@ -46,6 +46,7 @@ router.post("/create-checkout-session", async (req, res) => {
 
       success_url: "http://localhost:5173/orderconfirmation",
       cancel_url: "http://localhost:5173/",
+      locale: 'en',
 
       // success_url: `${process.env.REACT_APP_BACKEND_URL}/success`,
       // cancel_url: `${process.env.REACT_APP_BACKEND_URL}/cart`,

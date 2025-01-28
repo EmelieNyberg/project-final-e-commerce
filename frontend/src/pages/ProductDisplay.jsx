@@ -34,6 +34,7 @@ const BackButton = styled(Link)`
   position: absolute;
   top: 100px;
   left: 400px;
+  text-decoration: none; 
 
   &:hover {
     background-color: #ff7bbc; // En något mörkare lila vid hover
@@ -126,7 +127,7 @@ const CartWrapper = styled.div`
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #b17cd8;
+      background-color: #ff7bbc;
     }
   }
 
@@ -163,7 +164,7 @@ const Dropdown = styled.div`
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #b17cd8;
+      background-color: #ff7bbc
     }
   }
 
@@ -213,7 +214,7 @@ export const ProductDisplay = () => {
 
   return (
     <ProductDetailsWrapper>
-      <BackButton to="/products">← Back</BackButton>
+      <BackButton to="/products">←</BackButton>
 
       <ImageWrapper>
         <img src={product.image.url} alt={product.title} />
@@ -246,7 +247,7 @@ export const ProductDisplay = () => {
           <button onClick={decreaseQuantity}>-</button>
           <span>{quantity}</span>
           <button onClick={increaseQuantity}>+</button>
-          <button onClick={handleAddToCart}>ADD TO CART</button>
+          <button onClick={handleAddToCart}>Add to cart</button>
         </CartWrapper>
 
         <Divider />

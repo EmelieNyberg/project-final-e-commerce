@@ -16,9 +16,11 @@ const StyledFooter = styled.footer`
 
 // Sektioner i footern
 const FooterSection = styled.section`
-  flex: 1;
+flex: 1;
   min-width: 200px;
-  margin: 10px;
+  /* margin: 10px; */
+  padding: 0 100px; 
+
 
   h2 {
     font-size: 18px;
@@ -34,6 +36,7 @@ const FooterSection = styled.section`
     margin-bottom: 10px;
     margin-right: 40px;
     color: #ffffff;
+   
   }
 
   a {
@@ -42,6 +45,7 @@ const FooterSection = styled.section`
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     margin: 5px 0;
+    text-decoration: none;
 
     &:hover {
       text-decoration: underline;
@@ -49,16 +53,21 @@ const FooterSection = styled.section`
   }
 `;
 
-// Layout för att gruppera sektionerna
 const FooterContent = styled.div`
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Tillåter innehåll att brytas på mindre skärmar */
+  justify-content: space-evenly; /* Sprider sektionerna jämnt horisontellt */
   width: 100%;
+  padding: 0 20px; /* Grundavstånd från kanterna för mobiler */
   box-sizing: border-box;
 
   @media (min-width: 768px) {
-    padding: 0px 100px;
+    justify-content: space-between; /* Fördelar sektionerna jämnt med större avstånd */
+    padding: 0 100px; /* Lägger till avstånd på båda sidor för surfplattor och större skärmar */
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0px 0px 0px 200px; /* Mer avstånd för desktop-skärmar */
   }
 `;
 
@@ -74,6 +83,7 @@ const FooterBottom = styled.div`
     margin: 0;
     font-size: 16px;
     margin-bottom: 20px;
+    
   }
 
   a {
@@ -100,8 +110,7 @@ export const Footer = () => {
         </FooterSection>
         <FooterSection>
           <h2>About Us</h2>
-          <a href="/about/company">Our Company</a>
-          <a href="/about/team">Our Team</a>
+          <a href="/about/team">Meet the team</a>
           <a href="/about/careers">Contact us</a>
         </FooterSection>
         <FooterSection>
@@ -110,12 +119,12 @@ export const Footer = () => {
           <a href="/support/chat">My shopping cart</a>
           <a href="/support/tickets">Become a member</a>
         </FooterSection>
-        <FooterSection>
-          <h2>Customer Service</h2>
+        {/* <FooterSection>
+          <h2>Categories</h2>
           <a href="/service/returns">Returns</a>
           <a href="/service/shipping">Shipping</a>
           <a href="/service/contact">Contact Us</a>
-        </FooterSection>
+        </FooterSection> */}
       </FooterContent>
       <FooterBottom>
         <p>Follow us</p>
