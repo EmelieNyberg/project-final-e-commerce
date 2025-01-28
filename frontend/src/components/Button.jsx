@@ -2,11 +2,13 @@
 
 import styled from 'styled-components';
 import { IoArrowForward } from 'react-icons/io5'; // Importera pilikonen från react-icons
+import { Link } from "react-router-dom";
 
 // Skapa den stilade knappen
-const StyledButton = styled.button`
-  background-color: #c79ced; // Lila bakgrund
-  color: white;               // Vit text
+const StyledButton = styled(Link)`
+  background-color: ${({ theme }) => theme.colors.Btn1}; // Lila bakgrund
+  color: ${({ theme }) => theme.colors.Font2};
+  text-decoration: none;
   padding: 12px 24px;         // Padding för att göra knappen större
   border: none;               // Ingen kant
   border-radius: 30px;        // Rundade hörn
@@ -21,7 +23,7 @@ const StyledButton = styled.button`
 
   // Lägg till hover-effekt
   &:hover {
-    background-color: #ff7bbc; // En något mörkare lila vid hover
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover}; // En något mörkare lila vid hover
   }
 
   // Lägg till ikon mellan texten och pilen
@@ -30,9 +32,9 @@ const StyledButton = styled.button`
   }
 `;
 
-export const Button = ({ text }) => {
+export const Button = ({ text, route }) => {
   return (
-    <StyledButton>
+    <StyledButton to={route}>
       {text} <IoArrowForward />
     </StyledButton>
   );

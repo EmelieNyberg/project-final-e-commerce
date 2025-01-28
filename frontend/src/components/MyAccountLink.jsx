@@ -1,6 +1,6 @@
 // MyAccountLink.jsx
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useUserStore } from "../stores/UserStore";
 import styled from "styled-components";
@@ -20,7 +20,6 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export const MyAccountLink = () => {
-  // const navigate = useNavigate();
   const { user } = useUserStore();
 
   return (

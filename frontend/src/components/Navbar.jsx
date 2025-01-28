@@ -11,19 +11,19 @@ const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #f8f8f8;
-  font-family: "Poppins", serif;
+  padding: 20px 60px;
+  font-family: ${({ theme }) => theme.fonts.Font2};
 `;
 
 const Brand = styled(NavLink)`
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 24px;
+  font-family: ${({ theme }) => theme.fonts.Font1};
+  font-size: 32px;
+  font-weight: bold;
   text-decoration: none;
-  color: black;
+  color: ${({ theme }) => theme.colors.Font1};
 
   &:hover {
-    color: #ff7bbc;
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 
@@ -58,14 +58,14 @@ const ListItem = styled.li`
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   font-family: "Poppins", serif;
-  color: black;
+  color: ${({ theme }) => theme.colors.Font1};
 
   &:hover {
-    color: #ff7bbc;
+    color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 
   &.active {
-    color: #ff7bbc;
+    color: ${({ theme }) => theme.colors.BtnLinkActive};
   }
 `;
 
@@ -92,12 +92,12 @@ const HamburgerMenuWrapper = styled.div`
 
 const HamburgerIcon = styled(FaBars)`
   font-size: 24px;
-  color: black;
+  color: ${({ theme }) => theme.colors.Font1};
 `;
 
 const CloseIcon = styled(MdClose)`
   font-size: 24px;
-  color: black;
+  color: ${({ theme }) => theme.colors.Font1};
 `;
 
 // Navbar Component

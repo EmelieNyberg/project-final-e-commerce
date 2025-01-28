@@ -1,51 +1,53 @@
-import styled from "styled-components";
+// Footer.jsx
+
 import { PiFacebookLogoBold } from "react-icons/pi";
 import { TbBrandTwitter } from "react-icons/tb";
 import { PiInstagramLogoBold } from "react-icons/pi";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { FaYoutubeSquare } from "react-icons/fa";
+import styled from "styled-components";
 
-// Huvudcontainer för footern
 const StyledFooter = styled.footer`
-  width: 100%;
-  background-color: #0e1216;
-  padding: 20px 0;
+  background-color: ${({ theme }) => theme.colors.Footer};
+  padding: 60px;
   display: flex;
   flex-direction: column;
 `;
 
-// Sektioner i footern
-const FooterSection = styled.section`
-flex: 1;
-  min-width: 200px;
-  /* margin: 10px; */
-  padding: 0 100px; 
+// Layout för att gruppera sektionerna
+const FooterContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+`;
 
+const FooterSection = styled.section`
+  width: 300px;
 
   h2 {
     font-size: 18px;
-    font-family: "Poppins", serif;
+    font-family: ${({ theme }) => theme.fonts.Font2};
     margin-bottom: 10px;
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.Font2};
   }
 
   p {
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-weight: 400; */
+    font-family: ${({ theme }) => theme.fonts.Font1};
     margin-bottom: 10px;
     margin-right: 40px;
-    color: #ffffff;
-   
+    color: ${({ theme }) => theme.colors.Font2};
   }
 
   a {
+    text-decoration: none;
     display: block;
     font-size: 16px;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 5px 0;
-    text-decoration: none;
+    color: ${({ theme }) => theme.colors.Font2};
+    font-family: ${({ theme }) => theme.fonts.Font1};
+    margin: 10px 0;
 
     &:hover {
       text-decoration: underline;
@@ -53,33 +55,15 @@ flex: 1;
   }
 `;
 
-const FooterContent = styled.div`
-  display: flex;
-  flex-wrap: wrap; /* Tillåter innehåll att brytas på mindre skärmar */
-  justify-content: space-evenly; /* Sprider sektionerna jämnt horisontellt */
-  width: 100%;
-  padding: 0 20px; /* Grundavstånd från kanterna för mobiler */
-  box-sizing: border-box;
-
-  @media (min-width: 768px) {
-    justify-content: space-between; /* Fördelar sektionerna jämnt med större avstånd */
-    padding: 0 100px; /* Lägger till avstånd på båda sidor för surfplattor och större skärmar */
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0px 0px 0px 200px; /* Mer avstånd för desktop-skärmar */
-  }
-`;
-
 // Sektion för copyright och ikoner
 const FooterBottom = styled.div`
   width: 100%;
   text-align: center;
-  margin-top: 20px;
-  color: white;
+  margin-top: 60px;
+  color: ${({ theme }) => theme.colors.Font2};
 
   p {
-    font-family: "Poppins", serif;
+    font-family: ${({ theme }) => theme.fonts.Font2};
     margin: 0;
     font-size: 16px;
     margin-bottom: 20px;
@@ -88,11 +72,11 @@ const FooterBottom = styled.div`
 
   a {
     margin: 0 10px; /* Avstånd mellan ikoner */
-    color: white;
+    color: ${({ theme }) => theme.colors.Font2};
     font-size: 24px; /* Ikonstorlek */
 
     &:hover {
-      color: #007bff; /* Ändra färg vid hover */
+      color: ${({ theme }) => theme.colors.BtnLinkHover}; /* Ändra färg vid hover */
     }
   }
 `;

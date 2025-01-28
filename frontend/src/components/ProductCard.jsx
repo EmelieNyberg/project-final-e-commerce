@@ -4,14 +4,10 @@ import { Link } from "react-router-dom";
 const ProductCardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Fyra kolumner på rad */
-
   max-width: 1200px;
   margin: auto;
   padding: 2% 0;
-
-
   
-
   /* För surfplattor */
   @media (max-width: 1024px) {
     grid-template-columns: repeat(3, 1fr); /* Tre på rad för mindre skärmar */
@@ -26,28 +22,35 @@ const ProductCardContainer = styled.div`
   @media (max-width: 480px) {
     grid-template-columns: repeat(2, 1fr); /* En på rad för små mobiler */
   }
-
 `;
 
 const CardTextWrapper = styled.div`
+  color: ${({ theme }) => theme.colors.Font1};
   padding: 10px;
   text-align: left;
   cursor: pointer;
 
   img {
+    display: block;
     width: 100%;
-    /* height: 537px; */
     object-fit: cover;
-   
+    transition: filter 0.3s ease;
+  }
+
+  img:hover {
+    filter: brightness(80%);
   }
 
   h3 {
+    font-family: ${({ theme }) => theme.fonts.Font1};
     font-size: 16px;
     font-weight: bold;
     margin: 10px 0;
   }
 
   p {
+    font-family: ${({ theme }) => theme.fonts.Font2};
+    font-weight: 300;
     font-size: 14px;
     margin: 5px 0;
   }

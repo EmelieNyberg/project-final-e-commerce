@@ -3,12 +3,39 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useCartStore } from "../stores/CartStore";
 
+const StyledProductDisplay = styled.div`
+  background-color: ${({ theme }) => theme.colors.Background};
+`;
+
+const BackButtonWrapper = styled.div`
+  padding: 60px;
+`;
+
+const BackButton = styled(Link)`
+  background-color: ${({ theme }) => theme.colors.Btn1}; // Lila bakgrund
+  color: ${({ theme }) => theme.colors.Font2};               // Vit text
+  padding: 12px 24px;         // Padding för att göra knappen större
+  border: none;               // Ingen kant
+  border-radius: 30px;        // Rundade hörn
+  font-family: ${({ theme }) => theme.fonts.Font2};
+  font-size: 16px;            // Textstorlek
+  font-weight: 500;          // Fetstil
+  cursor: pointer;            // Markera knappen som klickbar
+  transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
+  text-decoration: none;
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover}; // En något mörkare lila vid hover
+  }
+`;
+
 // Wrapper för hela produktinformationen
 const ProductDetailsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  padding: 5px;
+  font-family: ${({ theme }) => theme.fonts.Font2};
+  padding: 10px 5px 60px 5px;
   max-width: 1200px;
   margin: 0 auto;
 
@@ -18,41 +45,12 @@ const ProductDetailsWrapper = styled.div`
   }
 `;
 
-const BackButton = styled(Link)`
-  background-color: #c79ced; // Lila bakgrund
-  color: white;               // Vit text
-  padding: 12px 24px;         // Padding för att göra knappen större
-  border: none;               // Ingen kant
-  border-radius: 30px;        // Rundade hörn
-  font-size: 16px;            // Textstorlek
-  font-weight: bold;          // Fetstil
-  display: flex;              // Flexbox för att placera text och ikon
-  align-items: center;        // Centrerar texten och ikonen vertikalt
-  justify-content: center;    // Centrerar innehållet horisontellt
-  cursor: pointer;            // Markera knappen som klickbar
-  transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
-  position: absolute;
-  top: 100px;
-  left: 400px;
-  text-decoration: none; 
-
-  &:hover {
-    background-color: #ff7bbc; // En något mörkare lila vid hover
-  }
-
-  @media (max-width: 768px) {
-    top: 100px; /* Justerar för mobiler */
-    left: 50px; /* Justerar avstånd för mobil */
-  }
-`;
-
 const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    padding-top: 50px;
     width: 100%;
     max-width: 500px;
     height: auto;
@@ -72,7 +70,9 @@ const InfoWrapper = styled.div`
   gap: 20px;
 
   h1 {
-    font-size: 24px;
+    font-family: ${({ theme }) => theme.fonts.Font1};
+    font-size: 32px;
+    margin-top: 0;
     margin-bottom: 10px;
   }
 
@@ -116,18 +116,19 @@ const CartWrapper = styled.div`
   margin-top: 20px;
 
   button {
-    background-color: #c79ced;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.Btn1};
+    color: ${({ theme }) => theme.colors.Font2};
     padding: 10px 20px;
     border: none;
     border-radius: 30px;
+    font-family: ${({ theme }) => theme.fonts.Font2};
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #ff7bbc;
+      background-color: ${({ theme }) => theme.colors.BtnLinkHover};
     }
   }
 
@@ -150,13 +151,15 @@ const Dropdown = styled.div`
   overflow: hidden;
 
   button {
-    background-color: #c79ced;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.Btn1};
+    color: ${({ theme }) => theme.colors.Font2};
+    margin-bottom: 30px;
     padding: 12px 24px;
     border: none;
     border-radius: 30px;
+    font-family: ${({ theme }) => theme.fonts.Font2};
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -164,13 +167,12 @@ const Dropdown = styled.div`
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #ff7bbc
+      background-color: ${({ theme }) => theme.colors.BtnLinkHover};
     }
   }
 
   .content {
     padding: 10px;
-    background-color: white;
     border-top: 1px solid #ddd;
     display: ${(props) => (props.open ? "block" : "none")};
   }
@@ -213,61 +215,66 @@ export const ProductDisplay = () => {
   if (!product) return <p>Loading...</p>;
 
   return (
-    <ProductDetailsWrapper>
-      <BackButton to="/products">←</BackButton>
+    <StyledProductDisplay>
+      <BackButtonWrapper>
+        <BackButton to="/products">← Back</BackButton>
+      </BackButtonWrapper>
+      <ProductDetailsWrapper>
+        <ImageWrapper>
+          <img src={product.image.url} alt={product.title} />
+        </ImageWrapper>
+        <InfoWrapper>
+          <h1>{product.title}</h1>
+          <p>
+            {/* <strong>Brand:</strong>  */}
+            {product.brand}
+          </p>
+          <p>
+            {/* <strong>Price:</strong>  */}
+            ${product.price}
+          </p>
 
-      <ImageWrapper>
-        <img src={product.image.url} alt={product.title} />
-      </ImageWrapper>
-      <InfoWrapper>
-        <h1>{product.title}</h1>
-        <p>
-          <strong>Brand:</strong> {product.brand}
-        </p>
-        <p>
-          <strong>Price:</strong> ${product.price}
-        </p>
+          <p>
+            <strong>Sizes:</strong>
+          </p>
+          <SizeButtonWrapper>
+            {product.size?.map((size) => (
+              <SizeButton
+                key={size}
+                selected={selectedSize === size}
+                onClick={() => setSelectedSize((prev) => (prev === size ? null : size))}
+              >
+                {size}
+              </SizeButton>
+            ))}
+          </SizeButtonWrapper>
 
-        <p>
-          <strong>Sizes:</strong>
-        </p>
-        <SizeButtonWrapper>
-          {product.size?.map((size) => (
-            <SizeButton
-              key={size}
-              selected={selectedSize === size}
-              onClick={() => setSelectedSize((prev) => (prev === size ? null : size))}
-            >
-              {size}
-            </SizeButton>
-          ))}
-        </SizeButtonWrapper>
+          <CartWrapper>
+            <button onClick={decreaseQuantity}>-</button>
+            <span>{quantity}</span>
+            <button onClick={increaseQuantity}>+</button>
+            <button onClick={handleAddToCart}>ADD TO CART</button>
+          </CartWrapper>
 
-        <CartWrapper>
-          <button onClick={decreaseQuantity}>-</button>
-          <span>{quantity}</span>
-          <button onClick={increaseQuantity}>+</button>
-          <button onClick={handleAddToCart}>Add to cart</button>
-        </CartWrapper>
-
-        <Divider />
-        <p>
-          <strong>Description:</strong> {product.description}
-        </p>
-        <Dropdown open={isDropdownOpen}>
-          <button onClick={() => setIsDropdownOpen((prev) => !prev)}>
-            Read more<span>{isDropdownOpen ? "-" : "+"}</span>
-          </button>
-          <div className="content">
-            <p>
-              <strong>Wash:</strong> {product.wash || "Not available"}
-            </p>
-            <p>
-              <strong>Material:</strong> {product.material || "Not available"}
-            </p>
-          </div>
-        </Dropdown>
-      </InfoWrapper>
-    </ProductDetailsWrapper>
+          <Divider />
+          <p>
+            <strong>Description:</strong> {product.description}
+          </p>
+          <Dropdown open={isDropdownOpen}>
+            <button onClick={() => setIsDropdownOpen((prev) => !prev)}>
+              <p>Read more <span>{isDropdownOpen ? "-" : "+"}</span></p>
+            </button>
+            <div className="content">
+              <p>
+                <strong>Wash:</strong> {product.wash || "Not available"}
+              </p>
+              <p>
+                <strong>Material:</strong> {product.material || "Not available"}
+              </p>
+            </div>
+          </Dropdown>
+        </InfoWrapper>
+      </ProductDetailsWrapper>
+    </StyledProductDisplay>
   );
 };

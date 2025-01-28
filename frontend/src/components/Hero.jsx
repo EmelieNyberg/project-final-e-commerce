@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { Button } from './Button';
 import cloudImage from "../assets/clouds-pattern.png";
-import toysImage from "../assets/baby-toys.png";
+import childImage from "../assets/child-sitting-down.png";
 
 const HeroContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.Header};  
@@ -11,11 +11,17 @@ const HeroContainer = styled.section`
 
 const StyledHero = styled.section`  
   display: flex; 
-  padding: 20px;
+  padding: 20px 60px;
+
+   /* For tablets */
+   @media (max-width: 1024px) {
+    padding-top: 60px;
+  }
 
   /* For mobile phones */
   @media (max-width: 667px) {
     flex-direction: column;
+    padding-top: 60px;
   }
 `;
 
@@ -47,12 +53,17 @@ const ImageContainer = styled.div`
   width: 100%;
 `;
 
-const ToysImg = styled.img`
-  min-width: 200px;
+const ChildImg = styled.img`
+  max-width: 500px;
+
+  @media (max-width: 1024px) {
+    max-width: 300px;
+  }
 
   /* For mobile phones */
   @media (max-width: 667px) {
-    width: 50%;
+    margin-top: 50px;
+    width: 100%;
   }
 `;
 
@@ -74,11 +85,11 @@ export const Hero = () => {
             Explore our collection of toys, clothing, and more. Carefully selected to keep your child entertained, safe, and happy.
           </HeroParagraph>
 
-          <Button text="Shop now" />
+          <Button text="Shop now" route="/products" />
         </TextContainer>
 
         <ImageContainer>
-          <ToysImg src={toysImage} alt="Picture of toys" />
+          <ChildImg src={childImage} alt="Picture of toys" />
         </ImageContainer>
       </StyledHero>
       <CloudPattern src={cloudImage} alt="Cloud pattern" />

@@ -9,12 +9,12 @@ const TopCategoriesContainer = styled.div`
 `;
 
 const TopCategoriesTitle = styled.h2`
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ${({ theme }) => theme.fonts.Font1};
   font-size: 35px;
   font-weight: 700;
   margin-bottom: 10px; /* Avstånd mellan rubrik och kort */
   text-align: center;
-  color: #333;
+  color: ${({ theme }) => theme.colors.Font1};
 `;
 
 const TopCategoriesWrapper = styled.div`
@@ -35,9 +35,9 @@ const TopCategoriesCard = styled.div`
 
 const StyledImage = styled.img`
   width: 100%; /* Anpassa bilden till kortets bredd */
-  max-width: 267px; Begränsa maximal bredd
-  margin-bottom: 15px; Utrymme mellan bild och knapp
-  border-radius: 10px;
+  max-width: 267px; 
+  margin-bottom: 15px; 
+  // border-radius: 10px;
 `;
 
 const StyledLink = styled.a`
