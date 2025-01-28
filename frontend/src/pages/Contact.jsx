@@ -8,9 +8,8 @@ const ContactWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 50px 20px;
-  background-color: #f4f4f9;
-  font-family: Arial, sans-serif;
-  color: #333;
+  font-family: ${({ theme }) => theme.fonts.Font2};
+  color: ${({ theme }) => theme.colors.Font1};
 `;
 
 // Sektionstitel
@@ -89,11 +88,11 @@ export const Contact = () => {
 
         <ContactForm>
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="text" id="name" required />
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder="Your Email" required />
+          <input type="email" id="email" required />
           <label htmlFor="message">Message</label>
-          <textarea id="message" placeholder="Your Message" required></textarea>
+          <textarea id="message" required></textarea>
           {/* Använd din Button-komponent */}
           <Button text="Send Message" />
         </ContactForm>

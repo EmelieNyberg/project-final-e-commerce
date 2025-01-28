@@ -15,7 +15,6 @@
     color: #ff7bbc;
 }
 
-/* Add menu on top of site */
 .bm-menu-wrap {
     top: 0;
 }
@@ -43,64 +42,6 @@ a:hover {
     color: #ff7bbc;
 }
 
-
-/* .bm-cross-button {
-    height: 29px;
-    width: 29px;
-} */
-
-/* 
-@media (min-width: 1024px) {
-    .hamburger-icon {
-        display: none;
-    }
-
-    .cross-icon {
-        display: none;
-    }
-
-    .bm-menu {
-        display: none;
-    }
-
-    .bm-overlay {
-        display: none;
-    }
-} */
-
-/* .bm-menu {
-    background: #ffffff;
-    padding: 50px 20px 0;
-    font-size: 16px;
-    margin-top: 44px;
-    width: 100%;
-    position: fixed;
+.cross-icon {
+    width: 50px;
 }
-
-.bm-menu-item:hover {
-    color: white;
-}
-
-.bm-cross-button {
-    height: 29px;
-    width: 29px;
-    left: 20px;
-}
-
-.bm-item-list {
-    color: var(--black);
-}
-
-.bm-overlay {
-    background: rgba(0, 0, 0, 0.3);
-    margin-top: 56px;
-    left: 0;
-}
-
-.menu-categories {
-    list-style-type: none;
-}
-
-.menu-categories li {
-    margin-bottom: 40px;
-} */

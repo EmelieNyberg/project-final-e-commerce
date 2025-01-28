@@ -66,8 +66,7 @@ const FooterBottom = styled.div`
     font-family: ${({ theme }) => theme.fonts.Font2};
     margin: 0;
     font-size: 16px;
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px; 
   }
 
   a {
@@ -103,12 +102,12 @@ export const Footer = () => {
           <a href="/support/chat">My shopping cart</a>
           <a href="/support/tickets">Become a member</a>
         </FooterSection>
-        {/* <FooterSection>
+        <FooterSection>
           <h2>Categories</h2>
           <a href="/service/returns">Returns</a>
           <a href="/service/shipping">Shipping</a>
           <a href="/service/contact">Contact Us</a>
-        </FooterSection> */}
+        </FooterSection>
       </FooterContent>
       <FooterBottom>
         <p>Follow us</p>

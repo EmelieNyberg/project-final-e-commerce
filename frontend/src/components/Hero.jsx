@@ -15,7 +15,8 @@ const StyledHero = styled.section`
 
    /* For tablets */
    @media (max-width: 1024px) {
-    padding-top: 60px;
+    padding: 50px 20px 20px 20px;
+    
   }
 
   /* For mobile phones */

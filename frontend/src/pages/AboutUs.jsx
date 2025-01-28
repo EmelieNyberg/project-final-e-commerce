@@ -10,16 +10,16 @@ const AboutWrapper = styled.div`
   align-items: center;
   text-align: center;
   padding: 50px 20px;
-  background-color: white /* Bakgrundsfärg */
-  color: #0f0d0d;
-  font-family: Arial, sans-serif;
-  
+  background-color: ${({ theme }) => theme.colors.Background}; /* Bakgrundsfärg */
+  color: ${({ theme }) => theme.colors.Font1};
+  font-family: ${({ theme }) => theme.fonts.Font2};
 `;
 
 // Sektionstitlar
 const SectionTitle = styled.h2`
-  font-size: 2rem;
+  font-size: 32px;
   margin-bottom: 20px;
+  font-family: ${({ theme }) => theme.fonts.Font1};
   font-weight: bold;
 `;
 
@@ -35,7 +35,7 @@ const Text = styled.p`
 const TeamWrapper = styled.div`
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 200px;
   flex-wrap: wrap;
 `;
 
@@ -47,6 +47,9 @@ const TeamMember = styled.div`
   text-align: center;
   max-width: 150px;
   
+  h3 {
+    font-size: 18px;
+  }
 `;
 
 const ProfileImage = styled.div`
@@ -71,7 +74,7 @@ const Links = styled.div`
   a {
     color: #000000;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 16px;
 
     &:hover {
       text-decoration: underline;
@@ -91,7 +94,7 @@ export const AboutUs = () => {
       <TeamWrapper>
         {/* Person 1 */}
         <TeamMember>
-          <ProfileImage image="/public/profil2.jpg" /> {/* Bild för Person 1 */}
+          <ProfileImage image="/public/emelie.jpg" /> {/* Bild för Person 1 */}
           <h3>Emelie</h3>
           <Links>
             <a href="#contact">Contact me</a>

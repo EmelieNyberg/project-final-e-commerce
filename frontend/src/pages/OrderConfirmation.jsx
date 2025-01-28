@@ -11,7 +11,7 @@ const ConfirmationWrapper = styled.div`
   align-items: center;
   text-align: center;
   padding: 20px;
-  background-color: #f8f8f8;
+  background-color: ${({ theme }) => theme.colors.Background};
   font-family: Arial, sans-serif;
   border-radius: 10px;
 

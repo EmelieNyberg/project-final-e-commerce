@@ -9,6 +9,10 @@ const StyledBanner = styled.section`
   font-family: ${({ theme }) => theme.fonts.Font2};
   font-weight: 300;
   font-size: 14px; 
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+  }
 `;
 
 const StyledBannerText = styled.p`
