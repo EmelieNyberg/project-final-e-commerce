@@ -4,7 +4,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Styling
 const NavbarWrapper = styled.nav`
@@ -48,10 +48,9 @@ const List = styled.ul`
     background-color: white;
     padding: 25px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    //border-radius: 5px;
     display: ${(props) => (props.isOpen ? "flex" : "none")};
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Flyttar länkarna ner */
+    margin-top: 20px;
   }
 `;
 
@@ -76,11 +75,6 @@ const StyledNavLink = styled(NavLink)`
 const RightIconsWrapper = styled.div`
   display: flex;
   gap: 15px;
-
-  @media (max-width: 768px) {
-    // position: relative;
-    // justify-content: flex-end;
-  }
 `;
 
 const HamburgerMenuWrapper = styled.div`
@@ -105,16 +99,35 @@ const CloseIcon = styled(RxCross2)`
 // Navbar Component
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null); // Referens för att spåra klick utanför menyn
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
+  // Effekt som lyssnar efter klick utanför menyn
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <NavbarWrapper>
       <Brand to="/">JollyKid</Brand>
 
-      <List isOpen={isMenuOpen}>
+      {/* Meny-länkar med referens */}
+      <List ref={menuRef} isOpen={isMenuOpen}>
         <ListItem>
           <StyledNavLink to="/products" onClick={() => setIsMenuOpen(false)}>
             Products
@@ -134,9 +147,9 @@ export const Navbar = () => {
 
       <RightIconsWrapper>
         <ShoppingCartLink />
-
         <MyAccountLink />
 
+        {/* Hamburgermeny för små skärmar */}
         <HamburgerMenuWrapper onClick={toggleMenu}>
           {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
         </HamburgerMenuWrapper>

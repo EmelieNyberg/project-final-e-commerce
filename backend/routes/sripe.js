@@ -33,7 +33,7 @@ router.post("/create-checkout-session", async (req, res) => {
               name: product.title,
               images: [product.image.url],
             },
-            unit_amount: product.price * 100, // Omvandla till ören
+            unit_amount: Math.round(product.price * 100), //Omvandla till ören
           },
           quantity: item.quantity,
         };
