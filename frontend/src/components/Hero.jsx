@@ -11,7 +11,7 @@ const HeroContainer = styled.section`
 
 const StyledHero = styled.section`  
   display: flex; 
-  padding: 20px 60px;
+  padding: 30px 60px;
 
    /* For tablets */
    @media (max-width: 1024px) {

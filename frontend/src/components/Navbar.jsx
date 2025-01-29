@@ -5,7 +5,6 @@ import { RxCross2 } from "react-icons/rx";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-// import { HamburgerMenu } from "./HamburgerMenu";
 
 // Styling
 const NavbarWrapper = styled.nav`
@@ -49,7 +48,7 @@ const List = styled.ul`
     background-color: white;
     padding: 25px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    //border-radius: 5px;
     display: ${(props) => (props.isOpen ? "flex" : "none")};
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 20px; /* Flyttar länkarna ner */
@@ -83,16 +82,6 @@ const RightIconsWrapper = styled.div`
     // justify-content: flex-end;
   }
 `;
-
-// const HamburgerMenuWrapper = styled.div`
-//   display: none;
-
-//   @media (max-width: 768px) {
-//     display: flex;
-//     align-items: center;
-//     cursor: pointer;
-//   }
-// `;
 
 const HamburgerMenuWrapper = styled.div`
   display: none;
@@ -147,9 +136,6 @@ export const Navbar = () => {
         <ShoppingCartLink />
 
         <MyAccountLink />
-        {/* <HamburgerMenuWrapper>
-          <HamburgerMenu />
-        </HamburgerMenuWrapper> */}
 
         <HamburgerMenuWrapper onClick={toggleMenu}>
           {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}

@@ -13,7 +13,6 @@ const StyledHeading = styled.h2`
   font-family: ${({ theme }) => theme.fonts.Font1};
   font-size: 35px;
   font-weight: 700;
-  margin-bottom: 10px; 
   text-align: center;
   color: ${({ theme }) => theme.colors.Font1};
 `;

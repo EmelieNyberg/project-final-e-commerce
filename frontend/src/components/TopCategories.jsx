@@ -5,31 +5,57 @@ const TopCategoriesContainer = styled.div`
   display: flex;
   flex-direction: column; /* Vertikal layout för rubrik och kort */
   align-items: center; /* Centrera innehållet */
-  padding: 20px;
+  padding: 30px;
 `;
 
 const TopCategoriesTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.Font1};
   font-size: 35px;
   font-weight: 700;
-  margin-bottom: 10px; /* Avstånd mellan rubrik och kort */
   text-align: center;
   color: ${({ theme }) => theme.colors.Font1};
 `;
 
+// const TopCategoriesWrapper = styled.div`
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+// `;
+
+
+
+
+
 const TopCategoriesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Fyra kolumner på rad */
+  //max-width: 1200px;
+  margin: auto;
+  //padding: 2% 0;
+  
+  /* För mobiler */
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr); /* Två på rad för mobilvyer */
+  }
+
+  /* För riktigt små mobiler */
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr); /* En på rad för små mobiler */
+  }
 `;
+
+
+
+
+
+
+
 
 const TopCategoriesCard = styled.div`
   display: flex;
   flex-direction: column; 
   align-items: center; 
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
 `;
 
@@ -66,22 +92,22 @@ export const TopCategories = () => {
         <Card
           imageSrc="src/assets/toys-kids-414x414.png"
           link="https://www.google.com/"
-          buttonText="Shop toys"
+          buttonText="Pants"
         />
         <Card
           imageSrc="src/assets/shoes-kids-414x414.png"
           link="https://www.google.com/"
-          buttonText="Shop shoes"
+          buttonText="Sweaters"
         />
         <Card
           imageSrc="src/assets/clothes-kids-414x414.png"
           link="https://www.google.com/"
-          buttonText="Shop clothes"
+          buttonText="Dresses"
         />
         <Card
           imageSrc="src/assets/utensils-kids-414x414.png"
           link="https://www.google.com/"
-          buttonText="Shop utensils"
+          buttonText="Outerwear"
         />
       </TopCategoriesWrapper>
     </TopCategoriesContainer>

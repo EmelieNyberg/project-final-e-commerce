@@ -12,10 +12,11 @@ const ConfirmationWrapper = styled.div`
   text-align: center;
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.Background};
-  font-family: Arial, sans-serif;
+  font-family: ${({ theme }) => theme.fonts.Font2};
   border-radius: 10px;
 
   h1 {
+    font-family: ${({ theme }) => theme.fonts.Font1};
     font-size: 2rem;
     font-weight: bold;
     color: #000000;
@@ -55,7 +56,7 @@ const ConfirmationWrapper = styled.div`
     margin: 20px 0px 20px 0px;
     padding: 15px;
     background-color: #ffffff;
-    border-radius: 10px;
+    //border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
@@ -63,6 +64,7 @@ const ConfirmationWrapper = styled.div`
   }
 
   .order-details h2 {
+    font-family: ${({ theme }) => theme.fonts.Font1};
     font-size: 1.5rem;
     color: #000000;
     margin-bottom: 10px;
@@ -75,7 +77,6 @@ const ConfirmationWrapper = styled.div`
 
   ul li {
     font-size: 1rem;
-    color: #333333;
     margin: 15px 0;
     display: flex;
     align-items: center;
@@ -86,7 +87,7 @@ const ConfirmationWrapper = styled.div`
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border-radius: 5px;
+    //border-radius: 5px;
   }
 `;
 
@@ -115,9 +116,7 @@ export const OrderConfirmation = () => {
     <ConfirmationWrapper>
       <h1>Thank you for your order!</h1>
       <p>
-        A confirmation of your order has NOT been sent to your email,
-        <br />
-        since this is not a real webshop! <span className="emoji">😉</span>
+        A confirmation of your order has NOT been sent to your email.
       </p>
 
       {orderDetails ? (
@@ -141,7 +140,7 @@ export const OrderConfirmation = () => {
                     e.target.src = "https://via.placeholder.com/50"; // Fallback-bild
                   }}
                 />
-                {item.title} - {item.quantity} x ${item.price.toFixed(2)}
+                <strong>{item.title}</strong> - {item.quantity} x ${item.price.toFixed(2)}
               </li>
             ))}
           </ul>
