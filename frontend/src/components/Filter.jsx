@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { IoArrowForward } from 'react-icons/io5';
+// import { IoArrowForward } from 'react-icons/io5';
 
 const StyledButton = styled.button`
   background-color: ${(props) => (props.selected ? "#ff7bbc" : "#c79ced")};
