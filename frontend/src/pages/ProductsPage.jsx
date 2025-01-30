@@ -6,33 +6,36 @@ import styled from "styled-components";
 
 const StyledProductPage = styled.section`
     padding: 30px;
+
+    /* For mobile screens */
+  @media (max-width: 768px) {
+    padding: 30px 0; 
+  }
 `;
 
 export const ProductsPage = () => {
-  const [products, setProducts] = useState([]); // Alla produkter från API
-  const [filteredProducts, setFilteredProducts] = useState([]); // För filtrerade produkter
-  const [selectedCategories, setSelectedCategories] = useState([]); // För valda kategorier
+  const [products, setProducts] = useState([]); // All products from API
+  const [filteredProducts, setFilteredProducts] = useState([]); // For filtered products
 
-  // Hämta produkter från API
+  // Fetch products from API
   useEffect(() => {
-    fetch("http://localhost:8080/products") // Ändra URL till din API-endpoint
+    fetch("http://localhost:8080/products")
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data); // Spara alla produkter
-        setFilteredProducts(data); // Visa alla produkter initialt
+        setProducts(data); // Save all products
+        setFilteredProducts(data); // Show all pruducts before user starts filtering
       })
       .catch((error) => console.error("Fel vid hämtning av produkter:", error));
   }, []);
 
-  // Hantera kategorifilter
+  // Handle category filter
   const handleFilter = (categories) => {
-    setSelectedCategories(categories); // Uppdatera valda kategorier
 
     if (categories.length === 0) {
-      // Om inga kategorier är valda, visa alla produkter
+      // If no categories ar selected, show all products
       setFilteredProducts(products);
     } else {
-      // Filtrera produkterna baserat på de valda kategorierna
+      // Filter products based on selected category
       setFilteredProducts(
         products.filter((product) => categories.includes(product.category))
       );
@@ -43,12 +46,12 @@ export const ProductsPage = () => {
     <>
       <Header title="Products" subtitle="Explore our product range" />
       <StyledProductPage>
-        {/* Filter-knappar */}
+        {/* Filter-buttons */}
         <Filter
           categories={["Outerwear", "Dresses", "Accessories", "T-shirts", "Pants", "Sweaters"]}
           onFilter={handleFilter}
         />
-        {/* Produktkort med filtrerade produkter */}
+        {/* Produktcard with filtered products */}
         <ProductCard products={filteredProducts} />
       </StyledProductPage>
     </>

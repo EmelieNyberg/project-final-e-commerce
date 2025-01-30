@@ -1,21 +1,17 @@
 // AboutUs.jsx
 
-// import { Header } from "../components/Header";
 import styled from "styled-components";
 
-// Wrapper för hela sidan
 const AboutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   padding: 50px 20px;
-  background-color: ${({ theme }) => theme.colors.Background}; /* Bakgrundsfärg */
+  background-color: ${({ theme }) => theme.colors.Background}; 
   color: ${({ theme }) => theme.colors.Font1};
   font-family: ${({ theme }) => theme.fonts.Font2};
 `;
 
-// Sektionstitlar
 const SectionTitle = styled.h2`
   font-size: 32px;
   margin-bottom: 20px;
@@ -23,23 +19,32 @@ const SectionTitle = styled.h2`
   font-weight: bold;
 `;
 
-// Textstyling
 const Text = styled.p`
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 300;
+  //line-height: 20px;
   margin-bottom: 30px;
   max-width: 800px;
 `;
 
-// Wrapper för team-medlemmarna
+const BoldText = styled.span`
+  font-weight: 500;
+`;
+
+// Wrapper for team-member
 const TeamWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 200px;
   flex-wrap: wrap;
+
+  /* Mobile screens*/
+  @media (max-width: 768px) {
+    gap: 50px; /* Two teammembers in a column on mobiles */
+  }
 `;
 
-// Kort för varje team-medlem
+// Card for every team member
 const TeamMember = styled.div`
   display: flex;
   flex-direction: column;
@@ -49,35 +54,36 @@ const TeamMember = styled.div`
   
   h3 {
     font-size: 18px;
+    font-family: ${({ theme }) => theme.fonts.Font1};
   }
 `;
 
 const ProfileImage = styled.div`
   width: 180px;
   height: 180px;
-  border-radius: 50%; /* Gör formen rund */
+  border-radius: 50%; /* Make picture round */
   margin-bottom: 10px;
   background-color: #fff;
-  background-image: url(${(props) => props.image}); /* Dynamisk bild */
-  background-size: cover; /* Bilden täcker hela ytan */
-  background-position: center; /* Bilden centreras */
-  background-repeat: no-repeat; /* Bilden repeteras inte */
+  background-image: url(${(props) => props.image}); /* Dynamic image */
+  background-size: cover; 
+  background-position: center; /* Image is centered */
+  background-repeat: no-repeat; /* Image do not repeat */
 
 `;
 
-// Länkar
+// Links
 const Links = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
 
   a {
-    color: #000000;
+    color: ${({ theme }) => theme.colors.Font1};
     text-decoration: none;
     font-size: 16px;
 
     &:hover {
-      text-decoration: underline;
+      color: ${({ theme }) => theme.colors.BtnLinkHover};
     }
   }
 `;
@@ -88,27 +94,33 @@ export const AboutUs = () => {
     <AboutWrapper>
       <SectionTitle>About Us</SectionTitle>
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-        odio. Praesent libero. Sed cursus ante dapibus diam.
+        Hey there! We’re two passionate web developers who have been diving deep into the world of code at Technigo’s bootcamp for the past few months. <br /><br />
+
+        During our 4-week project, we wanted to challenge ourselves and build something completely outside the curriculum. Enter: our e-commerce site! <br /><br />
+
+        Why e-commerce, you ask? Well, because why not?! We realized we hadn’t explored it much during the bootcamp, so we thought: “Let’s push our skills and create something new!” And, well… here we are! <br /><br />
+
+        We've poured our hearts, brains, and a fair amount of coffee into this project, and we hope you like it!<BoldText> If you have any questions, feedback, or just want to chat tech, feel free to reach out—we’d love to hear from you!</BoldText> <br /><br />
+
+        Happy browsing! 🚀 <br />
+        Emelie & Jonas
       </Text>
       <TeamWrapper>
-        {/* Person 1 */}
         <TeamMember>
-          <ProfileImage image="/public/emelie.jpg" /> {/* Bild för Person 1 */}
-          <h3>Emelie</h3>
+          <ProfileImage image="/public/emelie.jpg" />
+          <h3>Emelie Nyberg</h3>
           <Links>
-            <a href="#contact">Contact me</a>
+            <a href="#contact">LinkedIn</a>
             <a href="#portfolio">Portfolio</a>
             <a href="#github">GitHub</a>
           </Links>
         </TeamMember>
 
-        {/* Person 2 */}
         <TeamMember>
-          <ProfileImage image="/public/profil1.jpg" /> {/* Bild för Person 2 */}
-          <h3>Jonas</h3>
+          <ProfileImage image="/public/profil1.jpg" />
+          <h3>Jonas Hellström</h3>
           <Links>
-            <a href="#contact">Contact me</a>
+            <a href="#contact">LinkedIn</a>
             <a href="#portfolio">Portfolio</a>
             <a href="#github">GitHub</a>
           </Links>

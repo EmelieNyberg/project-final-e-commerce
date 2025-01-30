@@ -13,16 +13,10 @@ const StyledHero = styled.section`
   display: flex; 
   padding: 30px 60px;
 
-   /* For tablets */
-   @media (max-width: 1024px) {
-    padding: 50px 20px 20px 20px;
-    
-  }
-
   /* For mobile phones */
   @media (max-width: 667px) {
     flex-direction: column;
-    padding-top: 60px;
+    padding: 40px 20px 30px 20px;
   }
 `;
 

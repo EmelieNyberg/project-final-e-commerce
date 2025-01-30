@@ -3,27 +3,30 @@ import { Link } from "react-router-dom";
 
 const ProductCardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Fyra kolumner på rad */
+  grid-template-columns: repeat(4, 1fr);
   max-width: 1200px;
   margin: auto;
-  //padding: 2% 0;
   
-  /* För mobiler */
+  /* Mobile screens */
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr); /* Två på rad för mobilvyer */
+    grid-template-columns: repeat(2, 1fr); 
   }
 
-  /* För riktigt små mobiler */
+  /* smaller mobile screens */
   @media (max-width: 480px) {
-    grid-template-columns: repeat(2, 1fr); /* En på rad för små mobiler */
+    grid-template-columns: repeat(2, 1fr); 
   }
 `;
 
 const CardTextWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.Font1};
   padding: 10px;
+`;
+
+const ProductCardLink = styled(Link)`
+color: ${({ theme }) => theme.colors.Font1};
   text-align: left;
   cursor: pointer;
+  text-decoration: none;
 
   img {
     display: block;
@@ -38,7 +41,7 @@ const CardTextWrapper = styled.div`
 
   h3 {
     font-family: ${({ theme }) => theme.fonts.Font1};
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     margin: 10px 0;
   }
@@ -46,7 +49,7 @@ const CardTextWrapper = styled.div`
   p {
     font-family: ${({ theme }) => theme.fonts.Font2};
     font-weight: 300;
-    font-size: 14px;
+    font-size: 16px;
     margin: 5px 0;
   }
 `;
@@ -56,7 +59,7 @@ export const ProductCard = ({ products = [] }) => {
     <ProductCardContainer>
       {products.map((product) => (
         <CardTextWrapper key={product.id}>
-          <Link to={`/products/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+          <ProductCardLink to={`/products/${product.id}`}>
             <img
               src={product.image?.url || "https://via.placeholder.com/200"}
               alt={product.title || "Product image"}
@@ -64,7 +67,7 @@ export const ProductCard = ({ products = [] }) => {
             <h3>{product.title}</h3>
             <p>{product.category}</p>
             <p>${product.price}</p>
-          </Link>
+          </ProductCardLink>
         </CardTextWrapper>
       ))}
     </ProductCardContainer>

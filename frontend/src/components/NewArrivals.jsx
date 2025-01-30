@@ -7,6 +7,11 @@ import styled from "styled-components";
 const StyledSection = styled.section`
   background-color: ${({ theme }) => theme.colors.Background};
   padding: 30px;
+
+   /* Small phones  */
+   @media (max-width: 480px) {
+    padding: 30px 0;
+  }
 `;
 
 const StyledHeading = styled.h2`

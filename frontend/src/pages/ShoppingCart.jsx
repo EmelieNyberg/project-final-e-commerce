@@ -135,7 +135,6 @@ export const ShoppingCart = () => {
   const stripePromise = loadStripe("pk_test_51Qjgfi08VDFOASl7772yGlzpdZoJuKmfDfGjuXczCpauS8FwNmQXJlrtOyDoXR7uWKQyh9mT3A6nVuFdsTjHdxNy00bD8RSZJE");
 
   const handleCheckout = async () => {
-    // setIsLoading(true);
     try {
       const response = await fetch("http://localhost:8080/create-checkout-session", {
         method: "POST",
@@ -160,7 +159,7 @@ export const ShoppingCart = () => {
       }
     } catch (error) {
       console.error("Error creating checkout session:", error);
-      alert("Något gick fel. Försök igen.");
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -220,83 +219,3 @@ export const ShoppingCart = () => {
     </>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const ShoppingCart = () => {
-//   const { cartItems, updateQuantity } = useCartStore();
-
-//   const totalPrice = cartItems.reduce(
-//     (sum, item) => sum + item.price * item.quantity,
-//     0
-//   );
-
-//   return (
-//     <>
-//       <Header title="Shopping Cart" subtitle="Manage your items" />
-//       <ShoppingCartContainer>
-//         {cartItems.map((item) => (
-//           <CartWrapper key={`${item.id}-${item.size}`}>
-//             <a href={`/products/${item.id}`}>
-//               <ProductImg src={item.image?.url} alt={item.title} />
-//             </a>
-//             <ProductDetails>
-//               <StyledTitle>
-//                 <a href={`/products/${item.id}`}>{item.title}</a>
-//               </StyledTitle>
-//               <p>Price: ${item.price}</p>
-//               <p>Size: {item.size}</p>
-//               <QuantityWrapper>
-//                 <QuantityButton
-//                   onClick={() =>
-//                     updateQuantity(item.id, item.size, item.quantity - 1)
-//                   }
-//                 >
-//                   <FaMinus />
-//                 </QuantityButton>
-//                 <QuantityNumber>{item.quantity}</QuantityNumber>
-//                 <QuantityButton
-//                   onClick={() =>
-//                     updateQuantity(item.id, item.size, item.quantity + 1)
-//                   }
-//                 >
-//                   <FaPlus />
-//                 </QuantityButton>
-//               </QuantityWrapper>
-//             </ProductDetails>
-//             <ActionWrapper>
-//               <CrossButton
-//                 onClick={() => updateQuantity(item.id, item.size, 0)}
-//               >
-//                 <RxCross2 />
-//               </CrossButton>
-//               <TotalPrice>
-//                 ${(item.price * item.quantity).toFixed(2)}
-//               </TotalPrice>
-//             </ActionWrapper>
-//           </CartWrapper>
-//         ))}
-//         <SummaryCart>
-//           <h3>Total:</h3>
-//           <h3>${totalPrice.toFixed(2)}</h3>
-//         </SummaryCart>
-//         <CheckoutButton onClick={handleToggleModal}>Proceed to Checkout</CheckoutButton>
-//         {isModalOpen && <DeliveryAndPaymentModal onClose={handleToggleModal} />}
-//       </ShoppingCartContainer>
-//     </>
-//   );
-// };
