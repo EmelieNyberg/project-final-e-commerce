@@ -51,18 +51,15 @@ const StyledImage = styled.img`
   margin-bottom: 15px; 
 `;
 
-const StyledLink = styled.a`
-  text-decoration: none;
-  color: inherit;
-`;
+// const StyledLink = styled.a`
+//   text-decoration: none;
+//   color: inherit;
+// `;
 
-// Reuseable card
-const Card = ({ imageSrc, link, buttonText }) => (
+const Card = ({ imageSrc, category }) => (
   <TopCategoriesCard>
-    <StyledLink href={link} target="_blank" rel="noopener noreferrer">
-      <StyledImage src={imageSrc} alt="Category" />
-    </StyledLink>
-    <Button text={buttonText} />
+    <StyledImage src={imageSrc} alt={category} />
+    <Button text={category} route={`/products?category=${category}`} />
   </TopCategoriesCard>
 );
 
@@ -74,23 +71,19 @@ export const TopCategories = () => {
       <TopCategoriesWrapper>
         <Card
           imageSrc="src/assets/toys-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Pants"
+          category="Pants"
         />
         <Card
           imageSrc="src/assets/shoes-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Sweaters"
+          category="Sweaters"
         />
         <Card
           imageSrc="src/assets/clothes-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Dresses"
+          category="Dresses"
         />
         <Card
           imageSrc="src/assets/utensils-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Outerwear"
+          category="Outerwear"
         />
       </TopCategoriesWrapper>
     </TopCategoriesContainer>

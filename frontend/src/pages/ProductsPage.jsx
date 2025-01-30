@@ -1,3 +1,5 @@
+// ProductPage.jsx
+
 import { useState, useEffect } from "react";
 import { Header } from "../components/Header";
 import { ProductCard } from "../components/ProductCard";
