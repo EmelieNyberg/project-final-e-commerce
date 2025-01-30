@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { useCartStore } from "../stores/CartStore";
 
-// Wrapper för att centrera innehållet
 const ConfirmationWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,23 +18,21 @@ const ConfirmationWrapper = styled.div`
     font-family: ${({ theme }) => theme.fonts.Font1};
     font-size: 2rem;
     font-weight: bold;
-    color: #000000;
+    color: ${({ theme }) => theme.colors.Font1};
     margin-bottom: 20px;
   }
 
   p {
     font-size: 1rem;
-    color: #000000;
+    font-weight: 300;
+    color: ${({ theme }) => theme.colors.Font1};
     margin-bottom: 20px;
-  }
-
-  .emoji {
-    font-size: 2rem;
+    max-width: 600px;
   }
 
   .back-button {
-    background-color: #c79ced;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.Btn1};
+    color: ${({ theme }) => theme.colors.Font2};
     padding: 12px 24px;
     border: none;
     border-radius: 30px;
@@ -48,7 +45,7 @@ const ConfirmationWrapper = styled.div`
     text-decoration: none;
 
     &:hover {
-      background-color: #ff7bbc;
+      background-color: ${({ theme }) => theme.colors.BtnLinkHover};
     }
   }
 
@@ -56,7 +53,6 @@ const ConfirmationWrapper = styled.div`
     margin: 20px 0px 20px 0px;
     padding: 15px;
     background-color: #ffffff;
-    //border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
@@ -66,7 +62,7 @@ const ConfirmationWrapper = styled.div`
   .order-details h2 {
     font-family: ${({ theme }) => theme.fonts.Font1};
     font-size: 1.5rem;
-    color: #000000;
+    color: ${({ theme }) => theme.colors.Font1};
     margin-bottom: 10px;
   }
 
@@ -87,7 +83,6 @@ const ConfirmationWrapper = styled.div`
     width: 200px;
     height: 200px;
     object-fit: cover;
-    //border-radius: 5px;
   }
 `;
 
@@ -116,9 +111,8 @@ export const OrderConfirmation = () => {
     <ConfirmationWrapper>
       <h1>Thank you for your order!</h1>
       <p>
-        A confirmation of your order has NOT been sent to your email.
+        No confirmation email has been sent, as this isn't a real webshop—but we appreciate your enthusiasm! 😊
       </p>
-
       {orderDetails ? (
         <div className="order-details">
           <h2>Order Details</h2>
@@ -133,11 +127,11 @@ export const OrderConfirmation = () => {
             {orderDetails.items.map((item, index) => (
               <li key={index}>
                 <img
-                  src={item.image?.url} // Säkerställer att vi hämtar URL från `image.url`
+                  src={item.image?.url} // Make sure we collect URL from `image.url`
                   alt={item.title}
                   onError={(e) => {
-                    e.target.onerror = null; // Förhindra loop
-                    e.target.src = "https://via.placeholder.com/50"; // Fallback-bild
+                    e.target.onerror = null; // Prevent loop
+                    e.target.src = "https://via.placeholder.com/50"; // Fallback-picture
                   }}
                 />
                 <strong>{item.title}</strong> - {item.quantity} x ${item.price.toFixed(2)}
@@ -148,7 +142,6 @@ export const OrderConfirmation = () => {
       ) : (
         <p>Loading your order details...</p>
       )}
-
       <Link to="/" className="back-button">
         Keep shopping
       </Link>

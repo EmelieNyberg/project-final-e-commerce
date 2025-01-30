@@ -12,16 +12,16 @@ const BackButtonWrapper = styled.div`
 `;
 
 const BackButton = styled(Link)`
-  background-color: ${({ theme }) => theme.colors.Btn1}; // Lila bakgrund
-  color: ${({ theme }) => theme.colors.Font2};               // Vit text
-  padding: 12px 24px;         // Padding för att göra knappen större
-  border: none;               // Ingen kant
-  border-radius: 30px;        // Rundade hörn
+  background-color: ${({ theme }) => theme.colors.Btn1}; 
+  color: ${({ theme }) => theme.colors.Font2};              
+  padding: 12px 24px;         
+  border: none;              
+  border-radius: 30px;        
   font-family: ${({ theme }) => theme.fonts.Font2};
-  font-size: 16px;            // Textstorlek
-  font-weight: 500;          // Fetstil
-  cursor: pointer;            // Markera knappen som klickbar
-  transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
+  font-size: 16px;            
+  font-weight: 500;          
+  cursor: pointer;            
+  transition: background-color 0.3s ease; 
   text-decoration: none;
   
   &:hover {

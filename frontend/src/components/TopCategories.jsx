@@ -3,9 +3,14 @@ import { Button } from "./Button";
 
 const TopCategoriesContainer = styled.div`
   display: flex;
-  flex-direction: column; /* Vertikal layout för rubrik och kort */
-  align-items: center; /* Centrera innehållet */
+  flex-direction: column; 
+  align-items: center;
   padding: 30px;
+
+  /* Small phones  */
+  @media (max-width: 480px) {
+    padding: 30px 0;
+  }
 `;
 
 const TopCategoriesTitle = styled.h2`
@@ -16,40 +21,21 @@ const TopCategoriesTitle = styled.h2`
   color: ${({ theme }) => theme.colors.Font1};
 `;
 
-// const TopCategoriesWrapper = styled.div`
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: center;
-// `;
-
-
-
-
-
 const TopCategoriesWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Fyra kolumner på rad */
-  //max-width: 1200px;
+  grid-template-columns: repeat(4, 1fr); 
   margin: auto;
-  //padding: 2% 0;
   
-  /* För mobiler */
+  /* Mobile screens */
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr); /* Två på rad för mobilvyer */
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* För riktigt små mobiler */
-  @media (max-width: 480px) {
-    grid-template-columns: repeat(2, 1fr); /* En på rad för små mobiler */
+  /* Smaller mobile screens */
+  @media (max-width: 374px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
-
-
-
-
-
-
-
 
 const TopCategoriesCard = styled.div`
   display: flex;
@@ -60,54 +46,44 @@ const TopCategoriesCard = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 100%; /* Anpassa bilden till kortets bredd */
+  width: 100%; 
   max-width: 267px; 
   margin-bottom: 15px; 
-  // border-radius: 10px;
 `;
 
-const StyledLink = styled.a`
-  text-decoration: none;
-  color: inherit;
-`;
+// const StyledLink = styled.a`
+//   text-decoration: none;
+//   color: inherit;
+// `;
 
-// Skapa ett kort som återanvänds
-const Card = ({ imageSrc, link, buttonText }) => (
+const Card = ({ imageSrc, category }) => (
   <TopCategoriesCard>
-    <StyledLink href={link} target="_blank" rel="noopener noreferrer">
-      <StyledImage src={imageSrc} alt="Category" />
-    </StyledLink>
-    <Button text={buttonText} />
+    <StyledImage src={imageSrc} alt={category} />
+    <Button text={category} route={`/products?category=${category}`} />
   </TopCategoriesCard>
 );
 
 export const TopCategories = () => {
   return (
     <TopCategoriesContainer>
-      {/* Rubrik ovanför korten */}
       <TopCategoriesTitle>Explore Our Top Categories</TopCategoriesTitle>
 
-      {/* Wrapper för korten */}
       <TopCategoriesWrapper>
         <Card
           imageSrc="src/assets/toys-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Pants"
+          category="Pants"
         />
         <Card
           imageSrc="src/assets/shoes-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Sweaters"
+          category="Sweaters"
         />
         <Card
           imageSrc="src/assets/clothes-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Dresses"
+          category="Dresses"
         />
         <Card
           imageSrc="src/assets/utensils-kids-414x414.png"
-          link="https://www.google.com/"
-          buttonText="Outerwear"
+          category="Outerwear"
         />
       </TopCategoriesWrapper>
     </TopCategoriesContainer>

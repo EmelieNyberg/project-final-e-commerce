@@ -63,26 +63,25 @@ const CheckboxInput = styled.input`
 `;
 
 const StyledButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.Btn1}; // Lila bakgrund
-  color: ${({ theme }) => theme.colors.Font2};               // Vit text
+  background-color: ${({ theme }) => theme.colors.Btn1}; 
+  color: ${({ theme }) => theme.colors.Font2};              
   margin-top: 20px;
-  padding: 12px 24px;         // Padding för att göra knappen större
-  border: none;               // Ingen kant
-  border-radius: 30px;        // Rundade hörn
-  font-size: 16px;            // Textstorlek
-  font-weight: bold;          // Fetstil
-  cursor: pointer;           // Markera knappen som klickbar
-  transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
+  padding: 12px 24px;         
+  border: none;              
+  border-radius: 30px;      
+  font-size: 16px;            
+  font-weight: bold;         
+  cursor: pointer;          
+  transition: background-color 0.3s ease; 
 
-  // Lägg till hover-effekt
   &:hover {
-    background-color: ${({ theme }) => theme.colors.BtnLinkHover}; // En något mörkare lila vid hover
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.BtnDisabled}; /* Grå bakgrund när inaktiverad */
-    color: ${({ theme }) => theme.colors.Font4}; /* Textfärg för inaktiverad knapp */
-    cursor: not-allowed; /* Markör för inaktiverad */
+    background-color: ${({ theme }) => theme.colors.BtnDisabled}; 
+    color: ${({ theme }) => theme.colors.Font4}; 
+    cursor: not-allowed;
   }
 `;
 
@@ -207,7 +206,7 @@ export const SignUpPage = () => {
                 checked={formData.acceptTerms}
                 onChange={handleChange}
               />
-              I accept the terms and conditions <Asterisk>*</Asterisk>
+              <p>I accept the terms and conditions <Asterisk>*</Asterisk></p>
             </CheckboxLabel>
 
             <StyledButton

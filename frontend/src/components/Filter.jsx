@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-// import { IoArrowForward } from 'react-icons/io5';
 
 const StyledButton = styled.button`
   background-color: ${(props) => (props.selected ? "#ff7bbc" : "#c79ced")};
-  color: white;
+  color: ${({ theme }) => theme.colors.Font2};
   padding: 12px 24px;
   border: none;
   border-radius: 30px;
@@ -14,18 +13,23 @@ const StyledButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #ff7bbc;
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: center; /* Centrera horisontellt */
-  align-items: center; /* Centrera vertikalt */
+  justify-content: center; 
+  align-items: center; 
   gap: 10px;
   flex-wrap: wrap;
-  margin: 20px auto; /* Lägger till lite avstånd ovanför och nedanför */
-  max-width: 800px; /* Begränsar bredden för att hålla knapparna snyggt centrerade */
+  margin: 20px auto; 
+  max-width: 800px; 
+
+  /* Mobile screen */
+  @media (max-width: 768px) {
+    padding: 10px; 
+  }
 `;
 
 export const Filter = ({ categories, onFilter }) => {
@@ -33,12 +37,12 @@ export const Filter = ({ categories, onFilter }) => {
 
   const handleCategoryClick = (category) => {
     if (selectedCategories.includes(category)) {
-      // Ta bort kategorin om den redan är vald
+      // Remove category if it is already selected
       const updatedCategories = selectedCategories.filter((cat) => cat !== category);
       setSelectedCategories(updatedCategories);
       onFilter(updatedCategories);
     } else {
-      // Lägg till kategorin om den inte är vald
+      // Add category if it is not selected
       const updatedCategories = [...selectedCategories, category];
       setSelectedCategories(updatedCategories);
       onFilter(updatedCategories);
@@ -50,7 +54,7 @@ export const Filter = ({ categories, onFilter }) => {
       {categories.map((category) => (
         <StyledButton
           key={category}
-          selected={selectedCategories.includes(category)} // Markera om vald
+          selected={selectedCategories.includes(category)} // Mark as selected
           onClick={() => handleCategoryClick(category)}
         >
           {category}

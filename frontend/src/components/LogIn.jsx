@@ -196,7 +196,7 @@ export const LogIn = () => {
 
             <ButtonWrapper>
               <StyledButton type="submit" disabled={!isFormValid}>
-                Log In
+                Login
               </StyledButton>
 
               <RegisterText>Not a member yet? <RegisterLink href="/signup">Register</RegisterLink></RegisterText>

@@ -24,7 +24,7 @@ const FooterContent = styled.div`
 `;
 
 const FooterSection = styled.section`
-  width: 300px;
+  width: 200px;
 
   h2 {
     font-size: 18px;
