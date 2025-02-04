@@ -2,53 +2,67 @@
 
 import express from "express";
 import dotenv from "dotenv";
-import Stripe from "stripe";
+import Stripe from "stripe"; // Import Stripe to handle payments
 import Product from "../schemas/productSchema.js";
 
 const router = express.Router();
 dotenv.config();
 
+// Initializing a new Stripe instance to interact with their API
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-const stripe = new Stripe("sk_test_51Qjgfi08VDFOASl7x1CsH8zYyC0JhyUva4zdaXwuasPLrRStpBc5T46OGiTK6GOGqP4BUY1OwWPyvkjlzBia9zEH00g4EahAZ2");
-
-
-// Endpoint för att skapa Stripe Checkout-session
+// Endpoint to create a Stripe Checkout-session
 router.post("/create-checkout-session", async (req, res) => {
-  const { items } = req.body; // Förväntar en array med { id, quantity }
+  // Getting product ID and quantity from request body, expecting
+  // an array with { id, quantity }
+  const { items } = req.body;
 
   try {
+    // Creating an array of "line items" (e.g. T-shirt q:2 price: 5 
+    // total:10) for Stripe by collecting product data from the database
     const lineItems = await Promise.all(
       items.map(async (item) => {
-        const product = await Product.findOne({ id: Number(item.id) }); // La till Number bara för att vara säker på att vi skickar ett number
+        // Get product info based on the ID that was sent from frontend
+        const product = await Product.findOne({ id: item.id });
 
+        // If product is not found, throw an error
         if (!product) throw new Error(`Product with id ${item.id} was not found.`);
+
+        // Return data in a Line item-format that Stripe requre
         return {
           price_data: {
-            currency: "USD",
+            currency: "USD", // currency USD
             product_data: {
-              name: product.title,
-              images: [product.image.url],
+              name: product.title, // Product titel from the database
+              images: [product.image.url], // Product img from the database (Stripe requires an array)
             },
-            unit_amount: Math.round(product.price * 100), //Omvandla till ören
+            unit_amount: Math.round(product.price * 100), // Convert to cents (Stripe requires cents)
           },
-          quantity: item.quantity,
+          quantity: item.quantity, // Quantity of products user'd like to buy
         };
       })
     );
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: lineItems,
-      mode: "payment",
 
+    // Here we communicate with Stripes API by using method
+    // stripe.checkout.sessions.create() witch creates a payment session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"], // Allow card as payment
+      line_items: lineItems, // All products the user should pay for
+      mode: "payment", // This is a single payment (e.g. not subscription)
+
+      // URL where user is sent if succesful payment
       success_url: "http://localhost:5173/orderconfirmation",
-      cancel_url: "http://localhost:5173/",
-      locale: 'en',
+      // URL where user is sent if payment is aborted
+      cancel_url: "http://localhost:5173/shoppingcart",
+      locale: 'en', // Language on payment site in Stripe
     });
+
+    // sends back session ID to frontend. Frontend uses 
+    // the session ID and uses it to send user to Stripe
+    // Checkout where payment is handled
     res.status(200).json({ id: session.id });
+
   } catch (error) {
-    console.log("hej"); // Hej
     res.status(500).json({ error: error.message });
   }
 });

@@ -132,16 +132,23 @@ export const ShoppingCart = () => {
     0
   );
 
+  // Importing the Stripe-library and loading it with a public test key
+  // from a business account at Stripe.com
   const stripePromise = loadStripe("pk_test_51Qjgfi08VDFOASl7772yGlzpdZoJuKmfDfGjuXczCpauS8FwNmQXJlrtOyDoXR7uWKQyh9mT3A6nVuFdsTjHdxNy00bD8RSZJE");
 
+  // Function that handles the checkout-process with Stripe
   const handleCheckout = async () => {
     try {
+      // Sending a POST request to backend-server to create
+      // a checkout session
       const response = await fetch("http://localhost:8080/create-checkout-session", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json", // Telling backend that the data is in JSON format
         },
         body: JSON.stringify({
+          // Takes all object in the shopping cart and makes them into a 
+          // list of ID and quantity - for Stripe
           items: cartItems.map((item) => ({
             id: item.id,
             quantity: item.quantity,
@@ -149,11 +156,18 @@ export const ShoppingCart = () => {
         }),
       });
 
+      // Awaiting the answere from Backend (a session ID), and when recieved, 
+      // convert it to JSON
       const data = await response.json();
 
+      // If server responds we get a sessionID from Stripe
       if (response.ok) {
         const stripe = await stripePromise;
+
+        // Redirect user to Stripe:s Checkout page with session ID
         stripe.redirectToCheckout({ sessionId: data.id });
+
+        // If response was NOT ok.
       } else {
         alert(`Error: ${data.error}`);
       }

@@ -70,19 +70,19 @@ export const TopCategories = () => {
 
       <TopCategoriesWrapper>
         <Card
-          imageSrc="src/assets/toys-kids-414x414.png"
+          imageSrc="src/assets/pexels-cottonbro-4715330.jpg"
           category="Pants"
         />
         <Card
-          imageSrc="src/assets/shoes-kids-414x414.png"
+          imageSrc="src/assets/IMG_0407.jpg"
           category="Sweaters"
         />
         <Card
-          imageSrc="src/assets/clothes-kids-414x414.png"
+          imageSrc="src/assets/IMG_0405.jpg"
           category="Dresses"
         />
         <Card
-          imageSrc="src/assets/utensils-kids-414x414.png"
+          imageSrc="src/assets/IMG_0406.jpg"
           category="Outerwear"
         />
       </TopCategoriesWrapper>
