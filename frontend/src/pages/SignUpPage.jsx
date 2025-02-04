@@ -106,7 +106,7 @@ export const SignUpPage = () => {
 
     // Post data to the backend
     try {
-      const response = await fetch("http://localhost:8080/users/signup", {
+      const response = await fetch("https://jollykid-api.onrender.com/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

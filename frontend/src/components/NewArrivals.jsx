@@ -28,7 +28,7 @@ export const NewArrivals = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/products/latest-products")
+    fetch("https://jollykid-api.onrender.com/products/latest-products")
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);

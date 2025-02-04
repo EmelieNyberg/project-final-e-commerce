@@ -92,8 +92,8 @@ export const ProductsPage = () => {
     // Hämta produkter från API:et beroende på vald kategori
     useEffect(() => {
         const url = selectedCategory
-            ? `http://localhost:8080/products?category=${selectedCategory}`
-            : `http://localhost:8080/products`;
+            ? `https://jollykid-api.onrender.com/products?category=${selectedCategory}`
+            : `https://jollykid-api.onrender.com/products`;
 
         fetch(url)
             .then((response) => response.json())

@@ -66,7 +66,7 @@ export const MyAccount = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:8080/users/my-account", {
+        const response = await fetch("https://jollykid-api.onrender.com/users/my-account", {
           method: "GET",
           headers: {
             Authorization: token, // Skicka token i headern

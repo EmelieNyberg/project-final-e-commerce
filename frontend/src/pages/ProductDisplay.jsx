@@ -187,7 +187,7 @@ export const ProductDisplay = () => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/products/${id}`)
+    fetch(`https://jollykid-api.onrender.com/products/${id}`)
       .then((response) => response.json())
       .then((data) => setProduct(data))
       .catch((error) => console.error("Error fetching product:", error));

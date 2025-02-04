@@ -141,7 +141,7 @@ export const ShoppingCart = () => {
     try {
       // Sending a POST request to backend-server to create
       // a checkout session
-      const response = await fetch("http://localhost:8080/create-checkout-session", {
+      const response = await fetch("https://jollykid-api.onrender.com/create-checkout-session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Telling backend that the data is in JSON format
