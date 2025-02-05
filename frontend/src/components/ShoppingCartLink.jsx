@@ -49,7 +49,12 @@ export const ShoppingCartLink = () => {
 
   return (
     <CartWrapper>
-      <StyledNavLink to="/shoppingcart" activeClassName="active">
+      <StyledNavLink
+        to="/shoppingcart"
+        activeClassName="active"
+        aria-label="shoppingcart"
+        title="shoppingcart"
+      >
         <PiShoppingCartSimpleBold style={{ fontSize: "25px" }} />
       </StyledNavLink>
       {totalQuantity > 0 && <Badge>{totalQuantity}</Badge>} {/* Visa bara badge om det finns produkter */}

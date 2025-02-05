@@ -93,37 +93,37 @@ export const Footer = () => {
         </FooterSection>
         <FooterSection>
           <h2>About Us</h2>
-          <a href="/about/team">Meet the team</a>
-          <a href="/about/careers">Contact us</a>
+          <a href="/about-us">Meet the team</a>
+          <a href="/contact">Contact us</a>
         </FooterSection>
         <FooterSection>
           <h2>My Pages</h2>
-          <a href="/support/faq">Sign in</a>
-          <a href="/support/chat">My shopping cart</a>
-          <a href="/support/tickets">Become a member</a>
+          <a href="/login">Login</a>
+          <a href="/shoppingcart">My shopping cart</a>
+          <a href="/signup">Become a member</a>
         </FooterSection>
         <FooterSection>
           <h2>Categories</h2>
-          <a href="/service/returns">Returns</a>
-          <a href="/service/shipping">Shipping</a>
-          <a href="/service/contact">Contact Us</a>
+          <a href="/contact">Returns</a>
+          <a href="/contact">Shipping</a>
+          <a href="/contact">Contact Us</a>
         </FooterSection>
       </FooterContent>
       <FooterBottom>
         <p>Follow us</p>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" title="facebook">
           <PiFacebookLogoBold />
         </a>
-        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" title="twitter">
           <TbBrandTwitter />
         </a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" title="instagram">
           <PiInstagramLogoBold />
         </a>
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" title="linkedin">
           <AiOutlineLinkedin />
         </a>
-        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" title="youtube">
           <FaYoutubeSquare />
         </a>
       </FooterBottom>

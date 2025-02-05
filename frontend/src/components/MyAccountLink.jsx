@@ -22,8 +22,14 @@ const StyledNavLink = styled(NavLink)`
 export const MyAccountLink = () => {
   const { user } = useUserStore();
 
+  const linkText = user ? "Go to My Account" : "Login to your account";
+
   return (
-    <StyledNavLink to={user ? "/my-account" : "/login"}>
+    <StyledNavLink
+      to={user ? "/my-account" : "/login"}
+      aria-label={linkText}
+      title={linkText}
+    >
       <BsFillPersonFill style={{ fontSize: "25px" }} />
     </StyledNavLink>
   );
