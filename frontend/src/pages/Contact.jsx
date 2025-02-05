@@ -49,7 +49,7 @@ const ContactForm = styled.form`
 
   input,
   textarea {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;

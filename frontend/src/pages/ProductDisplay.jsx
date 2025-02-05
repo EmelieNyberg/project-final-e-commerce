@@ -80,6 +80,10 @@ const InfoWrapper = styled.div`
     margin: 0;
     font-size: 16px;
   }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 // Wrapper för storleksknappar

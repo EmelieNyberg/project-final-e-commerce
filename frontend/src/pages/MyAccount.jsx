@@ -10,7 +10,7 @@ const MyAccountContainer = styled.div`
   text-align: center;
   max-width: 700px;
   margin: auto;
-  padding: 30px 10px;
+  padding: 30px 20px;
 `;
 
 const WelcomeMessage = styled.h2`

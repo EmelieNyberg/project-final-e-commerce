@@ -10,7 +10,7 @@ import styled from "styled-components";
 const ShoppingCartContainer = styled.div`
   max-width: 600px;
   margin: auto;
-  padding: 30px 0;
+  padding: 30px 20px;
   font-family: ${({ theme }) => theme.fonts.Font2};
 `;
 
@@ -34,6 +34,11 @@ const ProductImg = styled.img`
 
   &&:hover {
     filter: brightness(80%);
+  }
+
+  @media (max-width: 375px) {
+    height: 100px;
+    width: 100px;
   }
 `;
 
