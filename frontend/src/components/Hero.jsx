@@ -84,7 +84,7 @@ export const Hero = () => {
         </TextContainer>
 
         <ImageContainer>
-          <ChildImg src={childImage} alt="Picture of toys" />
+          <ChildImg src={childImage} alt="Picture of girl" />
         </ImageContainer>
       </StyledHero>
       <CloudPattern src={cloudImage} alt="Cloud pattern" />

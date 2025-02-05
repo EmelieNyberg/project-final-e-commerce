@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { Button } from "./Button";
+import pantsImage from "../assets/pexels-cottonbro-4715330.jpg";
+import sweatersImage from "../assets/IMG_0407.jpg";
+import dressesImage from "../assets/IMG_0405.jpg";
+import outerwearImage from "../assets/IMG_0406.jpg";
 
 const TopCategoriesContainer = styled.div`
   display: flex;
@@ -70,19 +74,19 @@ export const TopCategories = () => {
 
       <TopCategoriesWrapper>
         <Card
-          imageSrc="src/assets/pexels-cottonbro-4715330.jpg"
+          imageSrc={pantsImage}
           category="Pants"
         />
         <Card
-          imageSrc="src/assets/IMG_0407.jpg"
+          imageSrc={sweatersImage}
           category="Sweaters"
         />
         <Card
-          imageSrc="src/assets/IMG_0405.jpg"
+          imageSrc={dressesImage}
           category="Dresses"
         />
         <Card
-          imageSrc="src/assets/IMG_0406.jpg"
+          imageSrc={outerwearImage}
           category="Outerwear"
         />
       </TopCategoriesWrapper>

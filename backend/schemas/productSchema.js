@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 
+// Schema for product data
 const productSchema = new Schema({
     id: { // ID (e.g., 6)
         type: Number,
@@ -25,7 +26,7 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    price: { // Price (e.g., "$65.00")
+    price: { // Price (e.g., "65.00")
         type: Number,
         required: true
     },

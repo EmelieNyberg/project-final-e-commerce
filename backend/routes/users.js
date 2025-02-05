@@ -10,25 +10,24 @@ const router = express.Router();
 const authenticateUser = async (req, res, next) => {
   const user = await User.findOne({ accessToken: req.header("Authorization") });
   if (user) {
-    req.user = user; // Lagra användaruppgifterna i req för senare användning
+    req.user = user; // Store user data in req to use later
     next();
   } else {
     res.status(401).json({ message: "Couldn't authenticate user." });
   }
 };
 
-// Skapa en ny användare
+// Create a new user
 router.post("/signup", async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
-
 
     // Check if all fields are filled
     if (!firstName || !lastName || !email || !password) {
       return res.status(400).json({ message: "All fields are required." });
     }
 
-    // Normalisera e-post till små bokstäver, so that A@email.com are the same email as a@email.com
+    // Normalize email to lower case letters, so that A@email.com are the same email as a@email.com
     const normalizedEmail = email.toLowerCase();
 
     // Check if email format is correct
@@ -51,8 +50,6 @@ router.post("/signup", async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: "Email is already in use." });
     }
-
-
 
     // Create new user with hashed password
     const salt = bcrypt.genSaltSync();
@@ -78,7 +75,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// Logga in en användare
+// Login a user
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -102,7 +99,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
-    // Return accessToken
+    // Return accessToken to frontend
     res.json({
       accessToken: user.accessToken
     });
@@ -114,6 +111,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Only users that are authenticated will be able to view their 
+// info in the database, in this case first and last name.
 router.get("/my-account", authenticateUser, (req, res) => {
   const user = req.user; // Get user from autenticateUser
   res.json({

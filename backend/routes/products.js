@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
     }
 });
 
+// Endpoint that returns the newest products (limited to 4)
 router.get("/latest-products", async (req, res) => {
     const products = await Product.find().sort({ id: 'desc' }).limit(4).exec();
     res.json(products);

@@ -1,6 +1,8 @@
 // AboutUs.jsx
 
 import styled from "styled-components";
+import emelie from "../../public/emelie.jpg";
+import jonas from "../../public/profil1.jpg";
 
 const AboutWrapper = styled.div`
   display: flex;
@@ -107,7 +109,7 @@ export const AboutUs = () => {
       </Text>
       <TeamWrapper>
         <TeamMember>
-          <ProfileImage image="/public/emelie.jpg" />
+          <ProfileImage image={emelie} />
           <h3>Emelie Nyberg</h3>
           <Links>
             <a href="#contact">LinkedIn</a>
@@ -117,7 +119,7 @@ export const AboutUs = () => {
         </TeamMember>
 
         <TeamMember>
-          <ProfileImage image="/public/profil1.jpg" />
+          <ProfileImage image={jonas} />
           <h3>Jonas Hellström</h3>
           <Links>
             <a href="#contact">LinkedIn</a>
