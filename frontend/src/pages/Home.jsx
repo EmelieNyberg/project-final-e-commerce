@@ -1,4 +1,5 @@
-// import { useState, useEffect } from "react";
+// Home.jsx
+
 import { Hero } from "../components/Hero";
 import { TopCategories } from "../components/TopCategories";
 import { NewArrivals } from "../components/NewArrivals";

@@ -1,3 +1,5 @@
+// TopCategories.jsx
+
 import styled from "styled-components";
 import { Button } from "./Button";
 import pantsImage from "../assets/pexels-cottonbro-4715330.jpg";
@@ -55,15 +57,10 @@ const StyledImage = styled.img`
   margin-bottom: 15px; 
 `;
 
-// const StyledLink = styled.a`
-//   text-decoration: none;
-//   color: inherit;
-// `;
-
 const Card = ({ imageSrc, category }) => (
   <TopCategoriesCard>
     <StyledImage src={imageSrc} alt={category} />
-    <Button text={category} route={`/products?category=${category}`} />
+    <Button text={category} route={`/products?category=${category.toLowerCase()}`} />
   </TopCategoriesCard>
 );
 
