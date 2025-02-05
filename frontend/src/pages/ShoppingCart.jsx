@@ -41,7 +41,7 @@ const ProductDetails = styled.div`
   margin-left: 16px;
 `;
 
-const StyledTitle = styled.h4`
+const StyledTitle = styled.h3`
   margin-top: 0;
 
   a {
