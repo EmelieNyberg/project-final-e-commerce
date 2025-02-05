@@ -197,6 +197,8 @@ export const ShoppingCart = () => {
                   onClick={() =>
                     updateQuantity(item.id, item.size, item.quantity - 1)
                   }
+                  aria-label="Decrease quantity"
+                  title="Decrease quantity"
                 >
                   <FaMinus />
                 </QuantityButton>
@@ -205,6 +207,8 @@ export const ShoppingCart = () => {
                   onClick={() =>
                     updateQuantity(item.id, item.size, item.quantity + 1)
                   }
+                  aria-label="Increase quantity"
+                  title="Increase quantity"
                 >
                   <FaPlus />
                 </QuantityButton>
@@ -213,6 +217,8 @@ export const ShoppingCart = () => {
             <ActionWrapper>
               <CrossButton
                 onClick={() => updateQuantity(item.id, item.size, 0)}
+                aria-label="Remove from cart"
+                title="Remove from cart"
               >
                 <RxCross2 />
               </CrossButton>

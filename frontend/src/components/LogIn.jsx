@@ -170,9 +170,10 @@ export const LogIn = () => {
 
             <FormField>
               <Label htmlFor="email">
-                EMAIL ADDRESS <Asterisk>*</Asterisk>
+                EMAIL ADDRESS <Asterisk aria-hidden="true">*</Asterisk>
               </Label>
               <Input
+                id="email"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -183,9 +184,10 @@ export const LogIn = () => {
 
             <FormField>
               <Label htmlFor="password">
-                PASSWORD <Asterisk>*</Asterisk>
+                PASSWORD <Asterisk aria-hidden="true">*</Asterisk>
               </Label>
               <Input
+                id="password"
                 type="password"
                 name="password"
                 value={formData.password}
@@ -199,7 +201,7 @@ export const LogIn = () => {
                 Login
               </StyledButton>
 
-              <RegisterText>Not a member yet? <RegisterLink href="/signup">Register</RegisterLink></RegisterText>
+              <RegisterText>Not a member yet? <RegisterLink href="/signup" title="register link">Register</RegisterLink></RegisterText>
             </ButtonWrapper>
           </form>
 
