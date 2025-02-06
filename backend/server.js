@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import expressListEndpoints from "express-list-endpoints";
 
 dotenv.config();
 
@@ -25,6 +26,10 @@ import stripeRoutes from "./routes/sripe.js";
 app.use("/products", productsRoutes);
 app.use("/users", usersRoutes);
 app.use("/", stripeRoutes);
+
+app.get("/", (req, res) => {
+  res.json(expressListEndpoints(app));
+});
 
 // Start the server
 app.listen(port, () => {
