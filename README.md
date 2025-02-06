@@ -9,11 +9,17 @@ This project was developed by two developers, working closely together to divide
 We have implemented a modern and responsive web store that meets the following technical requirements:
 
 ✅ Frontend in React – Routing via React Router and global state management via Zustand & useState
+
 ✅ Backend in Node.js & Express – Handling products, user authentication, and payments
+
 ✅ MongoDB database – Storing users, products, and orders
+
 ✅ Authentication – Secure login and user registration
+
 ✅ Payment integration – Seamless checkout experience via Stripe
+
 ✅ Responsive design – Optimized for mobile, tablet, and desktop
+
 ✅ Accessibility compliance – Following WCAG standards
 
 ## 📌 Key Features
@@ -42,11 +48,13 @@ If we had more time, we would have refined and expanded the project in the follo
 - Order history & past purchases
 
 ## 🌟 Contributors
+
 👨‍💻 Developer 1 – Jonas Hellström - GitHub: jonash189
+
 👩‍💻 Developer 2 – Emelie Nyberg Kedert - GitHub: emelienyberg
 
-# View it live
+## View it live
 
-### Frontend: https://jollykid.netlify.app
+#### Frontend: https://jollykid.netlify.app
 
-### Backend: https://jollykid-api.onrender.com
+#### Backend: https://jollykid-api.onrender.com
