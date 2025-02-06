@@ -51,9 +51,9 @@ router.post("/create-checkout-session", async (req, res) => {
       mode: "payment", // This is a single payment (e.g. not subscription)
 
       // URL where user is sent if succesful payment
-      success_url: "http://localhost:5173/orderconfirmation",
+      success_url: "https://jollykid.netlify.app/orderconfirmation",
       // URL where user is sent if payment is aborted
-      cancel_url: "http://localhost:5173/shoppingcart",
+      cancel_url: "https://jollykid.netlify.app/shoppingcart",
       locale: 'en', // Language on payment site in Stripe
     });
 
