@@ -14,7 +14,6 @@ const StyledFooter = styled.footer`
   flex-direction: column;
 `;
 
-// Layout för att gruppera sektionerna
 const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
@@ -55,7 +54,6 @@ const FooterSection = styled.section`
   }
 `;
 
-// Sektion för copyright och ikoner
 const FooterBottom = styled.div`
   width: 100%;
   text-align: center;
@@ -70,12 +68,12 @@ const FooterBottom = styled.div`
   }
 
   a {
-    margin: 0 10px; /* Avstånd mellan ikoner */
+    margin: 0 10px; 
     color: ${({ theme }) => theme.colors.Font2};
-    font-size: 24px; /* Ikonstorlek */
+    font-size: 24px;
 
     &:hover {
-      color: ${({ theme }) => theme.colors.BtnLinkHover}; /* Ändra färg vid hover */
+      color: ${({ theme }) => theme.colors.BtnLinkHover};
     }
   }
 `;

@@ -142,7 +142,10 @@ export const OrderConfirmation = () => {
       ) : (
         <p>Loading your order details...</p>
       )}
-      <Link to="/" className="back-button">
+      <Link
+        to="/"
+        className="back-button"
+      >
         Keep shopping
       </Link>
     </ConfirmationWrapper>

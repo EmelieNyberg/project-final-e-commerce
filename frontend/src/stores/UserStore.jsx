@@ -6,15 +6,15 @@ import { persist } from "zustand/middleware";
 export const useUserStore = create(
   persist(
     (set) => ({
-      user: null, // Initialt inget användarobjekt
+      user: null, // User starts with null
 
-      setUser: (user) => set({ user }), // Uppdatera användarens uppgifter
+      setUser: (user) => set({ user }), // Update user input
 
-      clearUser: () => set({ user: null }), // Rensa användarens uppgifter
+      clearUser: () => set({ user: null }), // Clean user input
     }),
     {
-      name: "user-storage", // Namn på nyckeln i localStorage
-      partialize: (state) => ({ user: state.user }), // Spara bara användarens data
+      name: "user-storage", // Key name in localStorage
+      partialize: (state) => ({ user: state.user }), // Save only the users data
     }
   )
 );

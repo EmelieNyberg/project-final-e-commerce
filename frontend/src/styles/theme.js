@@ -2,7 +2,7 @@
 
 export const theme = {
   colors: {
-    Font1: "#000000", // Black (Gray? color: #333;)
+    Font1: "#000000", // Black
     Font2: "#FFFFFF", // White
     Font3: "#AA0000", // Error message
     Font4: "#666666", // Gray

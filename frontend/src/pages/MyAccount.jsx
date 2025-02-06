@@ -61,7 +61,7 @@ export const MyAccount = () => {
       const token = localStorage.getItem("accessToken");
 
       if (!token) {
-        clearUser(); // Om token saknas, rensa användardata
+        clearUser(); // If token is missing, clean userdata
         return;
       }
 
@@ -69,19 +69,19 @@ export const MyAccount = () => {
         const response = await fetch("https://jollykid-api.onrender.com/users/my-account", {
           method: "GET",
           headers: {
-            Authorization: token, // Skicka token i headern
+            Authorization: token, // Send token in header
           },
         });
 
         if (response.ok) {
           const data = await response.json();
-          setUser(data); // Uppdatera användardata i Zustand
+          setUser(data); // Update userdata in Zustand
         } else {
-          clearUser(); // Logga ut om token är ogiltig
+          clearUser(); // Log out if token is unvalid
         }
       } catch (error) {
         console.error("Error fetching account details:", error);
-        clearUser(); // Logga ut vid fel
+        clearUser(); // Log out - if error occur
       }
     };
 
@@ -100,8 +100,13 @@ export const MyAccount = () => {
       <Header title="My Account" subtitle="Account Details" />
       {user ? (
         <MyAccountContainer>
-          <WelcomeMessage>Welcome {user.firstName} {user.lastName}!</WelcomeMessage>
-          <WelcomeText>We're happy to see you again. Here, you can view your recent orders, update your profile, and explore your favorites. Need assistance? Don’t hesitate to contact our <ContactLink href="/contact">customer service</ContactLink>.</WelcomeText>
+          <WelcomeMessage>
+            Welcome {user.firstName} {user.lastName}!
+          </WelcomeMessage>
+          <WelcomeText>
+            We're happy to see you again. Here, you can view your recent orders, update your profile, and explore your favorites. Need assistance? Don’t hesitate to contact our
+            <ContactLink href="/contact">customer service</ContactLink>.
+          </WelcomeText>
           <StyledButton onClick={handleLogout}>
             Log Out
           </StyledButton>
