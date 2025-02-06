@@ -11,9 +11,12 @@ export const useUserFormStore = create((set) => ({
     acceptTerms: false,
   },
   errorMessage: "",
+
   updateFormData: (data) =>
     set((state) => ({ formData: { ...state.formData, ...data } })),
+
   updateErrorMessage: (message) => set(() => ({ errorMessage: message })),
+
   resetForm: () =>
     set(() => ({
       formData: {

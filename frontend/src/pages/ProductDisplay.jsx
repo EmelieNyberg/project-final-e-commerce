@@ -25,11 +25,10 @@ const BackButton = styled(Link)`
   text-decoration: none;
   
   &:hover {
-    background-color: ${({ theme }) => theme.colors.BtnLinkHover}; // En något mörkare lila vid hover
+    background-color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
 `;
 
-// Wrapper för hela produktinformationen
 const ProductDetailsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -40,7 +39,7 @@ const ProductDetailsWrapper = styled.div`
   margin: 0 auto;
 
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr; /* Två kolumner för större skärmar */
+    grid-template-columns: 1fr 1fr; 
     align-items: start;
   }
 `;
@@ -86,7 +85,6 @@ const InfoWrapper = styled.div`
   }
 `;
 
-// Wrapper för storleksknappar
 const SizeButtonWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -97,7 +95,6 @@ const SizeButtonWrapper = styled.div`
   }
 `;
 
-// Stil för varje storleksknapp
 const SizeButton = styled.button`
   padding: 10px 20px;
   font-size: 16px;
@@ -151,7 +148,6 @@ const Divider = styled.hr`
 
 const Dropdown = styled.div`
   margin-top: 10px;
-  /* border: 1px solid #ddd; */
   overflow: hidden;
 
   button {
@@ -185,9 +181,9 @@ const Dropdown = styled.div`
 export const ProductDisplay = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [selectedSize, setSelectedSize] = useState(null); // Förvald storlek
+  const [selectedSize, setSelectedSize] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [quantity, setQuantity] = useState(1); // Antal produkter
+  const [quantity, setQuantity] = useState(1); // Start value of quantity of products
   const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
@@ -210,7 +206,7 @@ export const ProductDisplay = () => {
       quantity,
       image: product.image,
     });
-    setQuantity(1); // Återställ antalet efter tillägg
+    setQuantity(1); // After adding product to cart, restore quantity to 1
   };
 
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
@@ -230,11 +226,9 @@ export const ProductDisplay = () => {
         <InfoWrapper>
           <h1>{product.title}</h1>
           <p>
-            {/* <strong>Brand:</strong>  */}
             {product.brand}
           </p>
           <p>
-            {/* <strong>Price:</strong>  */}
             ${product.price}
           </p>
 

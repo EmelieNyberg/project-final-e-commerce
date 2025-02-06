@@ -24,7 +24,6 @@ const SectionTitle = styled.h2`
 const Text = styled.p`
   font-size: 16px;
   font-weight: 300;
-  //line-height: 20px;
   margin-bottom: 30px;
   max-width: 800px;
 `;
@@ -33,7 +32,6 @@ const BoldText = styled.span`
   font-weight: 500;
 `;
 
-// Wrapper for team-member
 const TeamWrapper = styled.div`
   display: flex;
   justify-content: center;

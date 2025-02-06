@@ -2,7 +2,6 @@ import { Header } from "../components/Header";
 import { Button } from "../components/Button"; // Importera din Button-komponent
 import styled from "styled-components";
 
-// Wrapper för hela sidan
 const ContactWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,14 +11,12 @@ const ContactWrapper = styled.div`
   color: ${({ theme }) => theme.colors.Font1};
 `;
 
-// Sektionstitel
 const SectionTitle = styled.h2`
   font-size: 2rem;
   margin-bottom: 20px;
   font-weight: bold;
 `;
 
-// Kontaktinformation
 const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,7 +31,6 @@ const ContactInfo = styled.div`
   }
 `;
 
-// Kontaktformulär
 const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -49,7 +45,6 @@ const ContactForm = styled.form`
 
   input,
   textarea {
-    /* width: 100%; */
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -61,8 +56,6 @@ const ContactForm = styled.form`
     height: 100px;
     resize: none;
   }
-
-  /* Ingen egen styling för knappen här */
 `;
 
 export const Contact = () => {
@@ -93,7 +86,6 @@ export const Contact = () => {
           <input type="email" id="email" required />
           <label htmlFor="message">Message</label>
           <textarea id="message" required></textarea>
-          {/* Använd din Button-komponent */}
           <Button text="Send Message" />
         </ContactForm>
       </ContactWrapper>

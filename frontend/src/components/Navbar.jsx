@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
-// Styling
 const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -99,13 +98,13 @@ const CloseIcon = styled(RxCross2)`
 // Navbar Component
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null); // Referens för att spåra klick utanför menyn
+  const menuRef = useRef(null); // Reference to track click outside the menu
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  // Effekt som lyssnar efter klick utanför menyn
+  // Effect that listens to klick outside the menu
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -126,18 +125,19 @@ export const Navbar = () => {
     <NavbarWrapper>
       <Brand to="/">JollyKid</Brand>
 
-      {/* Meny-länkar med referens */}
       <List ref={menuRef} isOpen={isMenuOpen}>
         <ListItem>
           <StyledNavLink to="/products" onClick={() => setIsMenuOpen(false)}>
             Products
           </StyledNavLink>
         </ListItem>
+
         <ListItem>
           <StyledNavLink to="/about" onClick={() => setIsMenuOpen(false)}>
             About us
           </StyledNavLink>
         </ListItem>
+
         <ListItem>
           <StyledNavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
             Contact
@@ -147,9 +147,10 @@ export const Navbar = () => {
 
       <RightIconsWrapper>
         <ShoppingCartLink />
+
         <MyAccountLink />
 
-        {/* Hamburgermeny för små skärmar */}
+        {/* Hamburgermenu for smaller screens */}
         <HamburgerMenuWrapper onClick={toggleMenu}>
           {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
         </HamburgerMenuWrapper>

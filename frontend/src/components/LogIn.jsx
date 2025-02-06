@@ -61,16 +61,15 @@ const ButtonWrapper = styled.div`
 const StyledButton = styled.button`
   background-color: ${({ theme }) => theme.colors.Btn1};
   color: ${({ theme }) => theme.colors.Font2};               
-  padding: 12px 24px;         // Padding för att göra knappen större
-  border: none;               // Ingen kant
-  border-radius: 30px;        // Rundade hörn
+  padding: 12px 24px;         
+  border: none;               
+  border-radius: 30px;      
   font-family: ${({ theme }) => theme.fonts.Font2};
-  font-size: 16px;            // Textstorlek
+  font-size: 16px;            
   font-weight: 500;          
-  cursor: pointer;           // Markera knappen som klickbar
-  transition: background-color 0.3s ease; // Animerad övergång för bakgrundsfärg
+  cursor: pointer;           
+  transition: background-color 0.3s ease; 
 
-  // Lägg till hover-effekt
   &:hover {
     background-color: ${({ theme }) => theme.colors.BtnLinkHover};
   }
@@ -78,7 +77,7 @@ const StyledButton = styled.button`
   &:disabled {
     background-color: ${({ theme }) => theme.colors.BtnDisabled};
     color: ${({ theme }) => theme.colors.Font4};
-    cursor: not-allowed; /* Markör för inaktiverad */
+    cursor: not-allowed; 
   }
 `;
 
@@ -133,20 +132,11 @@ export const LogIn = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // alert("Login successful!");
-        // Här kan du hantera accessToken eller navigera användaren vidare
-
         // Save accessToken in localStorage
         localStorage.setItem("accessToken", data.accessToken);
-
         setUser(data);
-
-
-
         resetForm(); // Clean form from input text and error message
-
-        navigate("/my-account");
-        // window.location.reload();
+        navigate("/my-account");  // Send user to my-account
 
       } else {
         updateErrorMessage(data.message); // Show error message from backend

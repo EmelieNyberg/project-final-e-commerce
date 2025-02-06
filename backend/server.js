@@ -8,7 +8,7 @@ import expressListEndpoints from "express-list-endpoints";
 
 dotenv.config();
 
-const mongoUrl = process.env.MONGO_URL; //|| "mongodb://localhost/final-project";
+const mongoUrl = process.env.MONGO_URL;
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;
 
